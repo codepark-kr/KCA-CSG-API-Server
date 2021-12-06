@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class TodoDTO {
+public class TodoDto {
     private String id;
     private String title;
     private boolean done;
 
 //  TODO @codepark: userId will be used for authentication with spring security.
-    public TodoDTO(final TodoEntity entity){
+    public TodoDto(final TodoEntity entity){
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.done = entity.isDone();

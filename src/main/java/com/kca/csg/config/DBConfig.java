@@ -18,13 +18,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(
-    basePackages = "com.kca.csg",
-    transactionManagerRef = "mariaDB_transactionManager",
-    entityManagerFactoryRef = "mariaDB_entity"
-)
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//    basePackages = "com.kca.csg",
+//    transactionManagerRef = "mariaDB_transactionManager",
+//    entityManagerFactoryRef = "mariaDB_entity"
+//)
 public class DBConfig {
 //     @Primary
 //     @Bean(name = "maria_dataSource")

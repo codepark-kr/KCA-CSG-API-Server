@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HorizontalWrapper  from '../pages/HorizontalWrapper';
-import '../assets/scss/horizontalWrapper.scss';
-import '../assets/scss/global.scss';
+import SignIn from '../pages/SignIn';
+import '../assets/styles/horizontalWrapper.scss';
+import '../assets/styles/global.scss';
 
 class App extends Component{
 	constructor(props){
@@ -13,7 +14,7 @@ class App extends Component{
 		return(
 			<>
 				<Switch>
-					<Route path={"/"} component={ HorizontalWrapper } />
+					<Route path={"/posts/all"} component={ HorizontalWrapper } />
 				</Switch>
 			</>
 		);

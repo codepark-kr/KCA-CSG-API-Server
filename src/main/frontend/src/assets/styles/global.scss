@@ -1,0 +1,52 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+
+:root {
+    --bg-color: #0e1111;
+    --deep-walnut: #1f1812;
+    --chinas-black: #0F1314;
+    --light-bg-color: #232b2b;
+    --line-color: #FCFCFC;
+    --dim-gray: #9B9B9B;
+    --davy-gray: #555555;
+    --dark-teal: #004041;
+    --chinas-gold: #CC9802;
+    --text-color: #F5F5F5;
+    --test-color: #288ba8;
+    --gloomy-yellow: #878104;
+    --fresh-yellow: #F78104;
+    --juicy-orange: #FD5901;
+    --young-cactus: #4d9f0c;
+
+    --dusty-gray: #757164;
+    --dusty-black: #222423;
+    --teal-point: #154946;
+
+    --common-font: .88rem;
+    --ui-font: .92rem;
+    --title-font: 1.3rem;
+    --nav-font: 1.14rem;
+    --description-font: .9rem;
+  }
+
+  // use: animation: show 13s linear infinite;
+  @keyframes show{
+    0% {margin-top:-450px;}
+    2% {margin-top:-360px;}
+    20% {margin-top:-360px;}
+    22% {margin-top:-270px;}
+    40% {margin-top:-270px;}
+    42% {margin-top:-180px;}
+    60% {margin-top:-180px;}
+    62% {margin-top:-90px;}
+    80% {margin-top:-90px;}
+    82% {margin-top:0px;}
+    98%{margin-top:0px;}
+    100% {margin-top:-450px;}
+}
+
+body { width: 100vw; height: 100vh; overflow-x: hidden; background-color: var(--bg-color); padding: 0; margin: 0; }
+* { font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+                'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;  color: white; }
+
+// common elements
+h2 { text-transform: uppercase; }

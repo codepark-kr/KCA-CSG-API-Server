@@ -1,6 +1,6 @@
 import React from 'react';
-import '../assets/scss/horizontalWrapper.scss';
-import TestComponent from "../component/TestComponent";
+import '../assets/styles/horizontalWrapper.scss';
+import TestComponent from "../components/TestComponent";
 
 const HorizontalWrapper=()=>{
     return(
