@@ -1,4 +1,4 @@
-package com.kca.csg.DTO;
+package com.kca.csg.dto;
 
 
 import lombok.AllArgsConstructor;

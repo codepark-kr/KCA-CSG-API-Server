@@ -2,19 +2,17 @@ package com.kca.csg.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
-@RequestMapping("test")
+@RequestMapping("api/v1")
 public class TestController {
 
-    @GetMapping
-    public String testController(){
-        return "Hello World";
-    }
-
-    @GetMapping("/testGetMapping")
-    public String testControllerWithPath(){
-        return "Hello World :: Test get mapping";
+    @GetMapping("/now")
+    public @ResponseBody String now(){
+        return "curr - system time is [ "+ new Date()+ " ]";
     }
 }

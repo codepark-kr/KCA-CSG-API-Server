@@ -1,13 +1,14 @@
-import React, { useReact, useState, Fragment } from 'react';
-import Sec1 from '../components/Section1';
+import React from 'react';
+import '../assets/scss/horizontalWrapper.scss';
+import TestComponent from "../component/TestComponent";
 
 const HorizontalWrapper=()=>{
     return(
         <>
             <div class="horizontalScroll">
                 <div class="item">
-                    <div class="item section1">
-                        <Sec1 />
+                    <div class="bg">
+                        < TestComponent />
                     </div>
                 </div>
                 <div class="item">

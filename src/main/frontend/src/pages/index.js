@@ -1,1 +1,1 @@
-export { default as MainConsole } from './MainConsole';
+export { default as horizontalWrapper } from './HorizontalWrapper';

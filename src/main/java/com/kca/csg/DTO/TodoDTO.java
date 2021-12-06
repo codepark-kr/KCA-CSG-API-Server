@@ -1,4 +1,4 @@
-package com.kca.csg.DTO;
+package com.kca.csg.dto;
 
 import com.kca.csg.model.TodoEntity;
 import lombok.AllArgsConstructor;
