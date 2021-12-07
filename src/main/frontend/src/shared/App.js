@@ -14,7 +14,7 @@ class App extends Component{
 		return(
 			<>
 				<Switch>
-					<Route path={"/posts/all"} component={ HorizontalWrapper } />
+					<Route path={"/"} component={ HorizontalWrapper } />
 				</Switch>
 			</>
 		);

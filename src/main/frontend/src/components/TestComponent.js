@@ -3,12 +3,12 @@ import axios from 'axios';
 
 const TestComponent=()=>{
     const [ systime, setSystime ] = useState('curr-systime');
-    useEffect (()=>{ axios.get('/posts/all').then(( response )=>{ setSystime( response.data ) }) });
+    useEffect (()=>{ axios.get('/testee/all').then(( response )=>{ setSystime( response.data ) }) });
 
     const loadAllPosts =async()=>{
         axios({
             method: 'GET',
-            url: '/posts/all'
+            url: '/testee/all'
             // ,
             // headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('token'))}
         }).then((data)=>{
@@ -22,7 +22,7 @@ const TestComponent=()=>{
     return(
         <div style={ testWrapperStyle }>
             <h2>test</h2>
-            <p>{ loadAllPosts() }</p>
+            <p>{ systime }</p>
         </div>
     );
 }
