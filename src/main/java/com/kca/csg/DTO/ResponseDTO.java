@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class ResponseDto<T> {
-    private String error;
+    private String status;
     private List<T> data;
 }

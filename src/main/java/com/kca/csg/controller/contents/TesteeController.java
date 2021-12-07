@@ -1,44 +1,53 @@
 package com.kca.csg.controller.contents;
 
+import com.kca.csg.dto.ResponseDto;
 import com.kca.csg.entity.Testee;
-import com.kca.csg.repository.TesteeRepository;
+import com.kca.csg.service.TestService;
+import com.kca.csg.service.TesteeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/testee")
 public class TesteeController {
 
     @Autowired
-    private TesteeRepository testeeRepository;
+    private TestService service;
 
-    @GetMapping("/all")
-     public List<Testee> getAllTestees(){
-        return testeeRepository.findAll();
+//    @GetMapping("/all")
+//    public ResponseEntity<?> testTestee(){
+//        Testee testee = service.testService();
+//        List<Testee> result = new ArrayList<>();
+//
+//        result.add(testee);
+//        ResponseDto<Testee> response = ResponseDto.<Testee>builder().data(result).status("OK").build();
+//
+//        return ResponseEntity.ok(response);
+//    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Testee> create(@RequestBody Testee testee){
+        return ResponseEntity.ok().body(service.create(testee));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Testee> getTesteeById(@PathVariable(value="id") Long id,
-                                                @Valid @RequestBody Testee testee) throws ResourceNotFoundException{
-        Testee specifiedTestee = specificTesteeById(id);
-
-        specifiedTestee.setTestTitle(testee.getTestTitle());
-        specifiedTestee.setTestDescription(testee.getTestDescription());
-        specifiedTestee.setTestDate(testee.getTestDate());
-
-        final Testee resultTestee = testeeRepository.save(specifiedTestee);
-        return ResponseEntity.ok(resultTestee);
+    @GetMapping("/read/{id}")
+    public ResponseEntity<Testee> read(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.read(id).get());
     }
 
-    public Testee specificTesteeById(Long id) throws ResourceNotFoundException {
-        Testee returnTestee = testeeRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Couldn't find the target with this id :" + id));
+    @PutMapping("/update")
+    public ResponseEntity<Testee> read(@RequestParam Long id, @RequestParam String title){
+        return ResponseEntity.ok().body(service.update(id, title));
+    }
 
-        return returnTestee;
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id){
+        service.delete(id);
     }
 }
