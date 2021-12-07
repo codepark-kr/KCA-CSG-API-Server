@@ -5,26 +5,26 @@ import TestComponent from "../components/TestComponent";
 const HorizontalWrapper=()=>{
     return(
         <>
-            <div class="horizontalScroll">
-                <div class="item">
-                    <div class="bg">
+            <div className="horizontalScroll">
+                <div className="item">
+                    <div className="bg">
                         < TestComponent />
                     </div>
                 </div>
-                <div class="item">
-                    <div class="bg2" ></div>
+                <div className="item">
+                    <div className="bg2" ></div>
                 </div>
-                <div class="item">
-                    <div class="bg"></div>
+                <div className="item">
+                    <div className="bg"></div>
                 </div>
-                <div class="item">
-                    <div class="bg2"></div>
+                <div className="item">
+                    <div className="bg2"></div>
                 </div>
-                <div class="item">
-                    <div class="bg" ></div>
+                <div className="item">
+                    <div className="bg" ></div>
                 </div>
-                <div class="item">
-                    <div class="bg2"></div>
+                <div className="item">
+                    <div className="bg2"></div>
                 </div>
             </div>
         </>

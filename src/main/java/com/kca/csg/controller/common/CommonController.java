@@ -9,8 +9,8 @@ import java.util.Date;
 @RestController
 public class CommonController {
 
-    @GetMapping("/test")
-    public @ResponseBody String now(){
-        return "curr - system time is [ "+ new Date()+ " ]";
-    }
+//    @GetMapping("/test")
+//    public @ResponseBody String now(){
+//        return "curr - system time is [ "+ new Date()+ " ]";
+//    }
 }
