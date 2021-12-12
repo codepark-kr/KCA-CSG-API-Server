@@ -1,4 +1,4 @@
-package com.kca.csg.controller.demo;
+package com.kca.csg.controller;
 
 import com.kca.csg.dto.ResponseDTO;
 import com.kca.csg.dto.TestRequestBodyDTO;
