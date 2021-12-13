@@ -32,13 +32,11 @@ public class TestController {
         return "Hello World! ID " + id;
     }
 
-    // /test경로는 이미 존재하므로 /test/testRequestParam으로 지정했다.
     @GetMapping("/testRequestParam")
     public String testControllerRequestParam(@RequestParam(required = false) int id) {
         return "Hello World! ID " + id;
     }
 
-    // /test경로는 이미 존재하므로 /test/testRequestBody로 지정했다.
     @GetMapping("/testRequestBody")
     public String testControllerRequestBody(@RequestBody TestRequestBodyDTO testRequestBodyDTO) {
         return "Hello World! ID " + testRequestBodyDTO.getId() + " Message : " + testRequestBodyDTO.getMessage();

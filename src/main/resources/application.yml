@@ -5,9 +5,11 @@ server:
       hibernate:
         show_sql: true
         format_sql: true
+        highlight_sql: true
+        grobally_quoted_identifiers: true
         temp:
           use_jdbc_metadata_defaults: false
-        ddl-auto: update
+        ddl-auto: validate
         dialect: org.hibernate.dialect.MariaDB103Dialect
     show-sql: true
     generate-ddl: true
