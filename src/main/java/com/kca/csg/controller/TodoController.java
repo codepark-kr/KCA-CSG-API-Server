@@ -49,7 +49,7 @@ public class TodoController {
             return ResponseEntity.ok().body(response);
         } catch (Exception e) {
             String error = e.getMessage();
-            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().status(error).build();
 
             return ResponseEntity.badRequest().body(response);
         }
@@ -91,7 +91,7 @@ public class TodoController {
             return ResponseEntity.ok().body(response);
         } catch (Exception e) {
             String error = e.getMessage();
-            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().status(error).build();
             return ResponseEntity.badRequest().body(response);
         }
     }

@@ -1,34 +1,34 @@
 package com.kca.csg.dto;
 
-import com.kca.csg.model.Twins;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.kca.csg.model.TwinsEntity;
+import lombok.*;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class TwinsDto {
-    private String id;
+    private long id;
     private String korTitle;
     private String korContent;
     private String engTitle;
     private String engContent;
-    private Date enrollDate;
-    private Date lastUpdate;
+    private Timestamp enrollDate;
+    private Timestamp lastUpdate;
 
-    public TwinsDto(final Twins entity){
+    public TwinsDto(final TwinsEntity entity){
         this.id = entity.getId();
         this.korTitle = entity.getKorTitle();
         this.korContent = entity.getKorContent();
         this.engTitle = entity.getEngTitle();
         this.engContent = entity.getEngContent();
+        this.enrollDate = entity.getEnrollDate();
+        this.lastUpdate = entity.getLastUpdate();
     }
 
-    public static Twins toEntity(final TwinsDto dto){
-        return Twins.builder()
+    public static TwinsEntity toEntity(final TwinsDto dto){
+        return TwinsEntity.builder()
                 .id(dto.getId())
                 .korTitle(dto.getKorTitle()).korContent(dto.getKorContent())
                 .engTitle(dto.getEngTitle()).engContent(dto.getEngContent())
