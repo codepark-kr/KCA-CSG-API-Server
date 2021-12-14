@@ -10,13 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Slf4j
-@EnableTransactionManagement
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class CsgApplication {
 
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(CsgApplication.class);
-		logger.info("working well");
+		logger.info("Los geht's");
 		SpringApplication.run(CsgApplication.class, args);
 	}
 }
