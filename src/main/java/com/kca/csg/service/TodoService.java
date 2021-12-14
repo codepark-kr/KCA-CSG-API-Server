@@ -1,7 +1,7 @@
 package com.kca.csg.service;
 
-import com.kca.csg.model.TodoEntity;
-import com.kca.csg.persistence.TodoRepository;
+import com.kca.csg.model.Todo;
+import com.kca.csg.repository.TodoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +17,14 @@ public class TodoService {
     private TodoRepository repository;
 
     public String testService() {
-        TodoEntity entity = TodoEntity.builder().title("My first todo item").build();
+        Todo entity = Todo.builder().title("My first todo item").build();
         repository.save(entity);
-        TodoEntity savedEntity = repository.findById(entity.getId()).get();
+        Todo savedEntity = repository.findById(entity.getId()).get();
 
         return savedEntity.getTitle();
     }
 
-    public List<TodoEntity> create(final TodoEntity entity) {
+    public List<Todo> create(final Todo entity) {
         validate(entity);
         repository.save(entity);
         log.info("Entity Id : {} is saved.", entity.getId());
@@ -32,7 +32,7 @@ public class TodoService {
         return repository.findByUserId(entity.getUserId());
     }
 
-    private void validate(final TodoEntity entity) {
+    private void validate(final Todo entity) {
         if(entity == null) {
             log.warn("Entity cannot be null.");
             throw new RuntimeException("Entity cannot be null.");
@@ -44,13 +44,13 @@ public class TodoService {
         }
     }
 
-    public List<TodoEntity> retrieve(final String userId) {
+    public List<Todo> retrieve(final String userId) {
         return repository.findByUserId(userId);
     }
 
-    public List<TodoEntity> update(final TodoEntity entity) {
+    public List<Todo> update(final Todo entity) {
         validate(entity);
-        final Optional<TodoEntity> original = repository.findById(entity.getId());
+        final Optional<Todo> original = repository.findById(entity.getId());
 
         original.ifPresent(todo -> {
             todo.setTitle(entity.getTitle());
@@ -61,7 +61,7 @@ public class TodoService {
     }
 
 
-    public List<TodoEntity> delete(final TodoEntity entity) {
+    public List<Todo> delete(final Todo entity) {
         validate(entity);
 
         try {

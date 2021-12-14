@@ -1,6 +1,6 @@
 package com.kca.csg.dto;
 
-import com.kca.csg.model.TodoEntity;
+import com.kca.csg.model.Todo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +13,14 @@ public class TodoDTO {
     private String title;
     private boolean done;
 
-    public TodoDTO(final TodoEntity entity) {
+    public TodoDTO(final Todo entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.done = entity.isDone();
     }
 
-    public static TodoEntity toEntity(final TodoDTO dto) {
-        return TodoEntity.builder()
+    public static Todo toEntity(final TodoDTO dto) {
+        return Todo.builder()
                 .id(dto.getId())
                 .title(dto.getTitle())
                 .done(dto.isDone())
