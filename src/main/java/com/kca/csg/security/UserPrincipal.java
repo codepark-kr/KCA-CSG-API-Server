@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails{
@@ -43,5 +44,67 @@ public class UserPrincipal implements UserDetails{
             return new UserPrincipal(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(),
                     user.getEmail(), user.getPassword(), authorities);
         }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities == null ? null : new ArrayList<>(authorities);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public boolean equals(Object object){
+        if(this == object) return true;
+        if(object == null || getClass() != object.getClass()){ return false; }
+        UserPrincipal that = (UserPrincipal) object;
+        return Objects.equals(id, that.id);
+    }
+
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }
 

@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "users" uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
     @UniqueConstraint(columnNames = { "email" })})
 public class User extends DateAudit {
     @Id
@@ -79,6 +79,4 @@ public class User extends DateAudit {
 
     public List<Twins> getTwins(){ return twins == null ? null : new ArrayList<>(twins); }
     public void setTwins(List<Twins> twins){ if(twins == null){ this.twins = null; } else this.twins = Collections.unmodifiableList(twins); }
-
-
 }
