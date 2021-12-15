@@ -13,7 +13,16 @@ server:
         dialect: org.hibernate.dialect.MariaDB103Dialect
     show-sql: true
     generate-ddl: true
-jwt:
-  secret: jwtsecret
-logging.level:
-  org.hibernate.SQL: debug
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+  jwt:
+    secret: jwtsecret
+  logging.level:
+    org.hibernate.SQL: debug
+  cors:
+    allowedOrigins: '*'
+  app:
+    jwtSecret: secret
+    jwtExpirationInMs: 360000
