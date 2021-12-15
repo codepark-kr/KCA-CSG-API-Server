@@ -1,5 +1,7 @@
 package com.kca.csg.config;
 
+import com.kca.csg.security.JwtAuthenticationEntryPoint;
+import com.kca.csg.security.JwtAuthenticationFilter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
