@@ -1,4 +1,4 @@
-package com.kca.csg.payload;
+package com.kca.csg.payload.request;
 
 import lombok.Data;
 

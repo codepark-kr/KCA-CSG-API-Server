@@ -1,6 +1,7 @@
 package com.kca.csg.service.impl;
 
 import com.kca.csg.model.User;
+import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.CustomerUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class CustomerUserDetailsServiceImpl implements UserDetailsService, Custo
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String usernameOrEmail){
-        User user = userRepository.findUsernameOrEmail(usernameOrEmail, usernameOrEmail)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User not found with this username of email: %s", usernameOrEmail)))
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User not found with this username of email: %s", usernameOrEmail)));
 
         return UserPrincipal.create(user);
     }
@@ -29,7 +30,7 @@ public class CustomerUserDetailsServiceImpl implements UserDetailsService, Custo
     @Override
     @Transactional
     public UserDetails loadUserById(Long id){
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(String.format("User not found with id: %s", id)))
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(String.format("User not found with id: %s", id)));
 
         return UserPrincipal.create(user);
     }

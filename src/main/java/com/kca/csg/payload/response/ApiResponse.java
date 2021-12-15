@@ -1,4 +1,4 @@
-package com.kca.csg.payload;
+package com.kca.csg.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

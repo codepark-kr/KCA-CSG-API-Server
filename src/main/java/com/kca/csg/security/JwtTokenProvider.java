@@ -1,23 +1,22 @@
 package com.kca.csg.security;
 
 import io.jsonwebtoken.*;
-import lombok.Value;
 import org.mariadb.jdbc.internal.logging.Logger;
 import org.mariadb.jdbc.internal.logging.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import java.security.SignatureException;
 import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-    @Value("${app.jwtSecret}")
+    @Value(value = "${app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${app.jwtExpirationInMs}")
+    @Value(value = "${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
     public String generateToken(Authentication authentication){
@@ -46,8 +45,6 @@ public class JwtTokenProvider {
         try{
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
-        }catch(SignatureException se){
-            LOGGER.error("Invalid JWT signature");
         } catch(MalformedJwtException mje){
             LOGGER.error("Invalid JWT token");
         } catch(ExpiredJwtException eje){

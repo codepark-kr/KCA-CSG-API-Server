@@ -1,6 +1,6 @@
 package com.kca.csg.exception;
 
-import com.kca.csg.payload.ApiResponse;
+import com.kca.csg.payload.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
