@@ -1,9 +1,9 @@
 package com.kca.csg.repository;
 
+import com.kca.csg.exception.ResourceNotFoundException;
 import com.kca.csg.model.User;
 import com.kca.csg.security.UserPrincipal;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotBlank;
