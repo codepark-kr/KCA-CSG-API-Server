@@ -4,7 +4,7 @@ import com.kca.csg.model.Twins;
 import com.kca.csg.payload.response.PagedResponse;
 import com.kca.csg.payload.request.TwinsRequest;
 import com.kca.csg.payload.response.TwinsResponse;
-import com.sun.security.auth.UserPrincipal;
+import com.kca.csg.security.UserPrincipal;
 
 public interface TwinsService {
 
@@ -12,7 +12,7 @@ public interface TwinsService {
 
     PagedResponse<Twins> getTwinsByCreatedBy(String username, int page, int size);
 
-    PagedResponse<Twins> getTwinsCategory(Long id, int page, int size);
+    PagedResponse<Twins> getTwinsByCategory(Long id, int page, int size);
 
     PagedResponse<Twins> getTwinsByTag(Long id, int page, int size);
 
@@ -23,4 +23,5 @@ public interface TwinsService {
     TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
 
     Twins getTwins(Long id);
+
 }
