@@ -1,6 +1,7 @@
 package com.kca.csg.service;
 
 import com.kca.csg.model.Twins;
+import com.kca.csg.payload.response.ApiResponse;
 import com.kca.csg.payload.response.PagedResponse;
 import com.kca.csg.payload.request.TwinsRequest;
 import com.kca.csg.payload.response.TwinsResponse;
@@ -18,7 +19,7 @@ public interface TwinsService {
 
     Twins updateTwins(Long id, TwinsRequest newTwinsRequest, UserPrincipal currentUser);
 
-    TwinsResponse deleteTwins(Long id, UserPrincipal currentUser);
+    ApiResponse deleteTwins(Long id, UserPrincipal currentUser);
 
     TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
 

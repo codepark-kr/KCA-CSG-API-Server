@@ -4,11 +4,13 @@ import com.kca.csg.model.Photo;
 import com.kca.csg.model.User;
 import com.kca.csg.payload.UserDateAuditPayload;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AlbumRequest extends UserDateAuditPayload {
 
