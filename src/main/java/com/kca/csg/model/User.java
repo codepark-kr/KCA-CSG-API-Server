@@ -3,10 +3,7 @@ package com.kca.csg.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kca.csg.model.audit.DateAudit;
 import com.kca.csg.model.role.Role;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -22,6 +19,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
         @UniqueConstraint(columnNames = { "email" })})
 public class User extends DateAudit {
