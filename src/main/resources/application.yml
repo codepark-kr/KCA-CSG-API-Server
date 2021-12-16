@@ -21,8 +21,8 @@ server:
     secret: jwtsecret
   logging.level:
     org.hibernate.SQL: debug
-  cors:
-    allowedOrigins: '*'
-  app:
-    jwtSecret: secret
-    jwtExpirationInMs: 360000
+cors:
+  allowedOrigins: '*'
+app:
+  jwtSecret: secret
+  jwtExpirationInMs: 360000

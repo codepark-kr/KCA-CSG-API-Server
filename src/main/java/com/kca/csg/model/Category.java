@@ -36,6 +36,5 @@ public class Category extends UserDateAudit {
     }
 
     public List<Twins> getTwins(){ return this.twins == null ? null : new ArrayList<>(this.twins); }
-
     public void setTwins(List<Twins> twins){ if(twins == null){ this.twins = null; } else { this.twins = Collections.unmodifiableList(twins); }}
 }
