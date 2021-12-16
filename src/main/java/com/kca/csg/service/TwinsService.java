@@ -23,5 +23,4 @@ public interface TwinsService {
     TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
 
     Twins getTwins(Long id);
-
 }
