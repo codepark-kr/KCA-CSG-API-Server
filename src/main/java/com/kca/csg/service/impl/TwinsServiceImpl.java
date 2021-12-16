@@ -1,5 +1,6 @@
 package com.kca.csg.service.impl;
 
+import com.kca.csg.exception.BadRequestException;
 import com.kca.csg.exception.ResourceNotFoundException;
 import com.kca.csg.exception.UnauthorizedException;
 import com.kca.csg.model.Category;
@@ -10,11 +11,13 @@ import com.kca.csg.model.role.RoleName;
 import com.kca.csg.payload.request.TwinsRequest;
 import com.kca.csg.payload.response.ApiResponse;
 import com.kca.csg.payload.response.PagedResponse;
+import com.kca.csg.payload.response.TwinsResponse;
 import com.kca.csg.repository.CategoryRepository;
 import com.kca.csg.repository.TagRepository;
 import com.kca.csg.repository.TwinsRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.service.TwinsService;
+import com.kca.csg.util.AppConstants;
 import com.kca.csg.util.AppUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,9 +27,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import com.kca.csg.security.UserPrincipal;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static com.kca.csg.util.AppConstants.*;
 import static com.kca.csg.util.AppUtils.validatePageNumberAndSize;
@@ -112,5 +115,66 @@ public class TwinsServiceImpl implements TwinsService {
         }
         ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to edit this post");
         throw new UnauthorizedException(apiResponse);
+    }
+
+    public ApiResponse deleteTwins(Long id, UserPrincipal currentUser){
+        Twins twins = twinsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TWINS, ID, id));
+
+        if(twins.getUser().getId().equals(currentUser.getId())
+            || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
+         twinsRepository.deleteById(id);
+
+         return new ApiResponse(Boolean.TRUE, "You successfully deleted the post");
+        }
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to delete this post");
+        throw new UnauthorizedException(apiResponse);
+    }
+
+    @Override
+    public TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser){
+        User user = userRepository.findById(currentUser.getId())
+                .orElseThrow(() -> new ResourceNotFoundException(USER, ID, 1L));
+        Category category = categoryRepository.findById(twinsRequest.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException(CATEGORY, ID, twinsRequest.getCategoryId()));
+
+        List<Tag> tags = new ArrayList<>(twinsRequest.getTags().size());
+
+        for(String name : twinsRequest.getTags()){
+            Tag tag = tagRepository.findByName(name);
+            tag = tag == null ? tagRepository.save(new Tag(name)) : tag;
+
+            tags.add(tag);
+        }
+
+        Twins twins = new Twins();
+        twins.builder().korTitle(twinsRequest.getKorTitle()).korContent(twinsRequest.getKorContent())
+                .engTitle(twinsRequest.getEngTitle()).engContent(twinsRequest.getEngContent())
+                .category(category).user(user).tags(tags).build();
+
+        Twins newTwins = twinsRepository.save(twins);
+        TwinsResponse twinsResponse = new TwinsResponse();
+
+        twinsResponse.builder().korTitle(newTwins.getKorTitle()).korContent(newTwins.getKorContent())
+                .engTitle(newTwins.getEngTitle()).engContent(newTwins.getEngContent())
+                .category(newTwins.getCategory().getName()).build();
+
+        List<String> tagNames = new ArrayList<>(newTwins.getTags().size());
+        for(Tag tag : newTwins.getTags()){ tagNames.add(tag.getName()); }
+        twinsResponse.setTags(tagNames);
+
+        return twinsResponse;
+    }
+
+    @Override
+    public Twins getTwins(Long id){
+        return twinsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TWINS, ID, id));
+    }
+
+    private void validatePageNumberAndSize(int page, int size){
+        if(page < 0){ throw new BadRequestException("Page number cannot be less than zero");}
+        if(size < 0){ throw new BadRequestException("Size number cannot be less than zero");}
+        if(size > MAX_PAGE_SIZE){
+            throw new BadRequestException("Page size must not be greater than " + MAX_PAGE_SIZE);
+        }
     }
 }
