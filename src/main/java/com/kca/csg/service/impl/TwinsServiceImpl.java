@@ -101,11 +101,12 @@ public class TwinsServiceImpl implements TwinsService {
 
         if(twins.getUser().getId().equals(currentUser.getId())
             || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
-            twins.setKorTitle(newTwinsRequest.getKorTitle());
-            twins.setKorContent(newTwinsRequest.getKorContent());
-            twins.setEngTitle(newTwinsRequest.getEngTitle());
-            twins.setEngContent(newTwinsRequest.getEngContent());
-            twins.setCategory(category);
+            twins.builder()
+            .korTitle(newTwinsRequest.getKorTitle())
+            .korContent(newTwinsRequest.getKorContent())
+            .engTitle(newTwinsRequest.getEngTitle())
+            .engContent(newTwinsRequest.getEngContent())
+            .category(category).build();
 
             return twinsRepository.save(twins);
         }

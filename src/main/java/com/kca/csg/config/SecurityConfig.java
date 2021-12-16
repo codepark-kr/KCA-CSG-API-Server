@@ -2,8 +2,7 @@ package com.kca.csg.config;
 
 import com.kca.csg.security.JwtAuthenticationEntryPoint;
 import com.kca.csg.security.JwtAuthenticationFilter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kca.csg.service.impl.CustomUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,36 +14,31 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-    private final CustomUserDetailsServiceImpl customUserDetaiLService;
+    private final CustomUserDetailsServiceImpl customUserDetailsService;
     private final JwtAuthenticationEntryPoint unauthorizedHandler;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Autowired
-    public SecurityConfig(UserRepository userRepository, CustomUserDetailsServiceImpl customUserDtailsService,
-                          JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter){
-        this.customUserDetaiLService = customUserDtailsService;
+    public SecurityConfig(CustomUserDetailsServiceImpl customUserDetailsService, JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.customUserDetailsService = customUserDetailsService;
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().autorizedRequests()
+                .and().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/checkUsernameAvailability", "/api/users/checkEmailAvailability").permitAll()
@@ -54,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
-        authenticationManagerBuilder.userDetailsService(customUserDetailService)
+        authenticationManagerBuilder.userDetailsService(customUserDetailsService)
             .passwordEncoder(passwordEncoder());
     }
 
