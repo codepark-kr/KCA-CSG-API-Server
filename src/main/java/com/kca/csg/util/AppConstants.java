@@ -9,6 +9,7 @@ public class AppConstants {
     public static final String ID = "id";
     public static final String PHOTO = "Photo";
     public static final String ALBUM = "Album";
+    public static final String USER = "USER";
     public static final String USERNAME = "username";
     public static final String CATEGORY = "Category";
     public static final String TAG = "Tag";
