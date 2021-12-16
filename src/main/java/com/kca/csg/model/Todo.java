@@ -1,28 +1,37 @@
 package com.kca.csg.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kca.csg.model.audit.UserDateAudit;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "Todo")
-public class Todo {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "todos", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" })})
+public class Todo extends UserDateAudit {
+
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    @Column(name = "title")
     private String title;
-    private boolean done;
+
+    @Column(name = "isCompleted")
+    private Boolean isCompleted;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @JsonIgnore
+    public User getUser(){ return user; }
+
 }
