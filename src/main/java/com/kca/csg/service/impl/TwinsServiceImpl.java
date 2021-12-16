@@ -17,7 +17,8 @@ import com.kca.csg.repository.TagRepository;
 import com.kca.csg.repository.TwinsRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.service.TwinsService;
-import com.kca.csg.util.ValidationUtils;
+import com.kca.csg.util.AppConstants;
+import com.kca.csg.util.AppUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +32,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.AppConstants.*;
-import static com.kca.csg.util.ValidationUtils.validatePageNumberAndSize;
+import static com.kca.csg.util.AppUtils.validatePageNumberAndSize;
 
 @Service
 public class TwinsServiceImpl implements TwinsService {
@@ -74,7 +75,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByCategory(Long id, int page, int size){
 
-        validatePageNumberAndSize(page, size);
+        AppUtils.validatePageNumberAndSize(page, size);
         Category category = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(CATEGORY, ID, id));
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findByCategory(category.getId(), pageable);
@@ -86,7 +87,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByTag(Long id, int page, int size){
 
-        validatePageNumberAndSize(page, size);
+        AppUtils.validatePageNumberAndSize(page, size);
         Tag tag = tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TAG, ID, id));
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findByTags(Collections.singletonList(tag), pageable);
@@ -169,4 +170,11 @@ public class TwinsServiceImpl implements TwinsService {
         return twinsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TWINS, ID, id));
     }
 
+    private void validatePageNumberAndSize(int page, int size){
+        if(page < 0){ throw new BadRequestException("Page number cannot be less than zero");}
+        if(size < 0){ throw new BadRequestException("Size number cannot be less than zero");}
+        if(size > MAX_PAGE_SIZE){
+            throw new BadRequestException("Page size must not be greater than " + MAX_PAGE_SIZE);
+        }
+    }
 }
