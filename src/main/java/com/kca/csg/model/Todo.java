@@ -24,8 +24,8 @@ public class Todo extends UserDateAudit {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "isCompleted")
-    private Boolean isCompleted;
+    @Column(name = "completed")
+    private Boolean completed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

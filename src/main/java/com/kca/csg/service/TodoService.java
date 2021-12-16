@@ -1,6 +1,7 @@
 package com.kca.csg.service;
 
 import com.kca.csg.model.Todo;
+import com.kca.csg.payload.response.ApiResponse;
 import com.kca.csg.payload.response.PagedResponse;
 import com.kca.csg.security.UserPrincipal;
 
@@ -14,5 +15,5 @@ public interface TodoService {
     Todo getTodo(Long id, UserPrincipal currentUser);
     Todo addTodo(Todo todo, UserPrincipal currentUser);
     Todo updateTodo(Long id, Todo newTodo, UserPrincipal currentUser);
-    Todo deleteTodo(Long id, UserPrincipal currentUser);
+    ApiResponse deleteTodo(Long id, UserPrincipal currentUser);
 }
