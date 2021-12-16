@@ -4,7 +4,6 @@ import com.kca.csg.model.User;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.CustomerUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,8 +14,11 @@ import javax.transaction.Transactional;
 @Service
 public class CustomerUserDetailsServiceImpl implements UserDetailsService, CustomerUserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public CustomerUserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     @Transactional
