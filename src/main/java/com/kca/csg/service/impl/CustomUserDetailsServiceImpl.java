@@ -3,7 +3,7 @@ package com.kca.csg.service.impl;
 import com.kca.csg.model.User;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.UserPrincipal;
-import com.kca.csg.service.CustomerUserDetailsService;
+import com.kca.csg.service.CustomUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class CustomerUserDetailsServiceImpl implements UserDetailsService, CustomerUserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService, CustomUserDetailsService {
 
     private final UserRepository userRepository;
 
-    public CustomerUserDetailsServiceImpl(UserRepository userRepository) {
+    public CustomUserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
