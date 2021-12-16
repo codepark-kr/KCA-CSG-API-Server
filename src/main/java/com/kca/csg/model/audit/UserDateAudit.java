@@ -1,14 +1,18 @@
 package com.kca.csg.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@NoArgsConstructor
+@Builder
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 @Data

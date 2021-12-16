@@ -3,6 +3,7 @@ package com.kca.csg.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kca.csg.model.audit.DateAudit;
 import com.kca.csg.model.role.Role;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Builder
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
