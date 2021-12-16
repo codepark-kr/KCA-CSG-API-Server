@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @Data

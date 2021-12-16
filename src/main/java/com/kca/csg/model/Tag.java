@@ -2,10 +2,7 @@ package com.kca.csg.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kca.csg.model.audit.UserDateAudit;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tags")
 public class Tag extends UserDateAudit {
 
