@@ -3,7 +3,7 @@ package com.kca.csg.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.kca.csg.model.audit.DateAudit;
+import com.kca.csg.model.audit.UserDateAudit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "TWINS")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Twins extends DateAudit {
+public class Twins extends UserDateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
