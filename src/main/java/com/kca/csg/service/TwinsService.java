@@ -18,6 +18,6 @@ public interface TwinsService {
     Twins getTwins(Long id);
 
     ApiResponse deleteTwins(Long id, UserPrincipal currentUser);
-    TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
 
+    TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
 }

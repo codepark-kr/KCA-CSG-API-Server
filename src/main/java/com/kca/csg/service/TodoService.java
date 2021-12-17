@@ -15,5 +15,6 @@ public interface TodoService {
     Todo getTodo(Long id, UserPrincipal currentUser);
     Todo addTodo(Todo todo, UserPrincipal currentUser);
     Todo updateTodo(Long id, Todo newTodo, UserPrincipal currentUser);
+
     ApiResponse deleteTodo(Long id, UserPrincipal currentUser);
 }
