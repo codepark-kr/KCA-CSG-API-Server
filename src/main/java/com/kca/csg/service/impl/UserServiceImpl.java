@@ -73,9 +73,8 @@ public class UserServiceImpl implements UserService{
             throw new BadRequestException(apiResponse);
         }
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(
-                () -> new AppException("User role not set")));
-        user.builder().roles(roles).password(passwordEncoder.encode(user.getPassword()));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
+        User.builder().roles(roles).password(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
     }
@@ -85,12 +84,11 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.getUserByName(username);
         if(user.getId().equals(currentUser.getId())
                 || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
-            user.builder()
+            User.builder()
                     .firstName(newUser.getFirstName())
                     .lastName(newUser.getLastName())
                     .password(newUser.getPassword())
                     .contact(newUser.getContact()).build();
-
             return userRepository.save(user);
         }
         ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to update profile of : " + username);
@@ -116,10 +114,10 @@ public class UserServiceImpl implements UserService{
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException("User role not set")));
         roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
-        user.builder().roles(roles).build();
+        User.builder().roles(roles).build();
         userRepository.save(user);
 
-        return new ApiResponse(Boolean.TRUE, "You gave ADMIN role to user : "+ username);
+        return new ApiResponse(Boolean.TRUE, "You grant ADMIN role to user : "+ username);
     }
 
     @Override
@@ -127,9 +125,9 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
-        user.builder().roles(roles).build();
+        User.builder().roles(roles).build();
         userRepository.save(user);
 
-        return new ApiResponse(Boolean.TRUE, "You took ADMIN role from user : "+ username);
+        return new ApiResponse(Boolean.TRUE, "You retrieve ADMIN role from user : "+ username);
     }
 }
