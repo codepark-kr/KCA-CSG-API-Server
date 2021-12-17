@@ -16,6 +16,6 @@ public interface AlbumService {
     ResponseEntity<Album> addAlbum(AlbumRequest albumRequest, UserPrincipal currentUser);
     ResponseEntity<Album> getAlbum(Long id);
     ResponseEntity<AlbumResponse> updateAlbum(Long id, AlbumRequest newAlbum, UserPrincipal currentUser);
-    ResponseEntity<ApiResponse> deleteAlbum(Long id, UserPrincipal currentuser);
+    ResponseEntity<ApiResponse> deleteAlbum(Long id, UserPrincipal currentUser);
 
 }
