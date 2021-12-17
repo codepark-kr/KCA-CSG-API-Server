@@ -4,7 +4,7 @@ import com.kca.csg.exception.ApiException;
 import org.springframework.http.HttpStatus;
 
 public class ValidationUtils {
-    public static void validatePageNumberAndSize(int page, int size){
+    public static void pageValidation(int page, int size){
         if(page < 0){ throw new ApiException(HttpStatus.BAD_REQUEST, "Page number cannot be less than zero"); }
         if(size < 0){ throw new ApiException(HttpStatus.BAD_REQUEST, "Size number cannot be less than zero"); }
         if(size > AppConstants.MAX_PAGE_SIZE){

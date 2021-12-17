@@ -1,6 +1,5 @@
 package com.kca.csg.service.impl;
 
-import com.kca.csg.exception.BadRequestException;
 import com.kca.csg.exception.ResourceNotFoundException;
 import com.kca.csg.exception.UnauthorizedException;
 import com.kca.csg.model.Category;
@@ -17,7 +16,6 @@ import com.kca.csg.repository.TagRepository;
 import com.kca.csg.repository.TwinsRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.service.TwinsService;
-import com.kca.csg.util.ValidationUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.AppConstants.*;
-import static com.kca.csg.util.ValidationUtils.validatePageNumberAndSize;
+import static com.kca.csg.util.ValidationUtils.pageValidation;
 
 @Service
 public class TwinsServiceImpl implements TwinsService {
@@ -51,7 +49,7 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public PagedResponse<Twins> getAllTwins(int page, int size){
-        validatePageNumberAndSize(page, size);
+        pageValidation(page, size);
 
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findAll(pageable);
@@ -62,7 +60,7 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public PagedResponse<Twins> getTwinsByCreatedBy(String username, int page, int size){
-        validatePageNumberAndSize(page, size);
+        pageValidation(page, size);
         User user = userRepository.getUserByName(username);
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findByCreatedBy(user.getId(), pageable);
@@ -74,7 +72,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByCategory(Long id, int page, int size){
 
-        validatePageNumberAndSize(page, size);
+        pageValidation(page, size);
         Category category = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(CATEGORY, ID, id));
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findByCategory(category.getId(), pageable);
@@ -86,7 +84,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByTag(Long id, int page, int size){
 
-        validatePageNumberAndSize(page, size);
+        pageValidation(page, size);
         Tag tag = tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TAG, ID, id));
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Twins> twins = twinsRepository.findByTags(Collections.singletonList(tag), pageable);

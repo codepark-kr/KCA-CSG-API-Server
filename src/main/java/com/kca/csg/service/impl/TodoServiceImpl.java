@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.AppConstants.*;
-import static com.kca.csg.util.ValidationUtils.validatePageNumberAndSize;
+import static com.kca.csg.util.ValidationUtils.pageValidation;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -67,7 +67,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public PagedResponse<Todo> getAllTodos(UserPrincipal currentUser, int page, int size) {
-        validatePageNumberAndSize(page, size);
+        pageValidation(page, size);
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<Todo> todos = todoRepository.findByCreatedBy(currentUser.getId(), pageable);
         List<Todo> content = todos.getNumberOfElements() == 0 ? Collections.emptyList() : todos.getContent();
