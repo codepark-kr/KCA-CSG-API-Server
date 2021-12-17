@@ -1,6 +1,5 @@
 package com.kca.csg.service.impl;
 
-import com.kca.csg.exception.ResourceNotFoundException;
 import com.kca.csg.exception.UnauthorizedException;
 import com.kca.csg.model.Todo;
 import com.kca.csg.model.User;
@@ -11,16 +10,14 @@ import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.TodoService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.AppConstants.*;
-import static com.kca.csg.util.ValidationUtils.pageValidation;
+import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.sortDescending;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -33,14 +30,15 @@ public class TodoServiceImpl implements TodoService {
         this.userRepository = userRepository;
     }
 
+/**     TODO: Same or similar statement for 'validate some object/user' is repeating too much.
+*             It must be extract to another integrated-method, or commonUtil class.
+*             (last update: 12.16.2021.) */
     @Override
     public Todo completeTodo(Long id, UserPrincipal currentUser){
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TODO, ID, id));
+        Todo todo = (Todo) findResourceById(id, TODO, id);
         User user = userRepository.getUser(currentUser);
-/**     TODO: Same or similar statement for 'validate some object/user' is repeating too much.
-*            It must be extract to another integrated-method, or commonUtil class.
-*            (last update: 12.16.2021.) */
 
+        assert todo != null;
         if(todo.getUser().getId().equals((user.getId()))){
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
@@ -49,15 +47,16 @@ public class TodoServiceImpl implements TodoService {
         throw new UnauthorizedException(apiResponse);
     }
 
-    @Override
-    public Todo unCompleteTodo(Long id, UserPrincipal currentUser) {
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TODO, ID, id));
-        User user = userRepository.getUser(currentUser);
-
-        if(todo.getUser().getId().equals(user.getId())){
 /**     TODO: This conditional-statement as well.
 *             It's related to validation for currentUser@UserPrincipal as well.
-*            (last update: 12.16.2021.) */
+*             (last update: 12.16.2021.) */
+    @Override
+    public Todo unCompleteTodo(Long id, UserPrincipal currentUser) {
+        Todo todo = (Todo) findResourceById(id, TODO, id);
+        User user = userRepository.getUser(currentUser);
+
+        assert todo!= null;
+        if(todo.getUser().getId().equals(user.getId())){
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
         }
@@ -67,9 +66,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public PagedResponse<Todo> getAllTodos(UserPrincipal currentUser, int page, int size) {
-        pageValidation(page, size);
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
-        Page<Todo> todos = todoRepository.findByCreatedBy(currentUser.getId(), pageable);
+        Page<Todo> todos = todoRepository.findByCreatedBy(currentUser.getId(), sortDescending(page, size));
         List<Todo> content = todos.getNumberOfElements() == 0 ? Collections.emptyList() : todos.getContent();
 
         return new PagedResponse<>(content, todos.getNumber(), todos.getSize(), todos.getTotalElements(), todos.getTotalPages(), todos.isLast());
@@ -78,8 +75,9 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo getTodo(Long id, UserPrincipal currentUser) {
         User user = userRepository.getUser(currentUser);
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TODO, ID, id));
+        Todo todo = (Todo) findResourceById(id, TODO, id);
 
+        assert todo != null;
         if(todo.getUser().getId().equals(user.getId())){ return todo; }
 
         ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
@@ -90,14 +88,16 @@ public class TodoServiceImpl implements TodoService {
     public Todo addTodo(Todo todo, UserPrincipal currentUser) {
         User user = userRepository.getUser(currentUser);
         todo.setUser(user);
+
         return todoRepository.save(todo);
     }
 
     @Override
     public Todo updateTodo(Long id, Todo newTodo, UserPrincipal currentUser) {
         User user = userRepository.getUser(currentUser);
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TODO, ID, id));
+        Todo todo = (Todo) findResourceById(id, TODO, id);
 
+        assert todo != null;
         if(todo.getUser().getId().equals(user.getId())){
             todo.setTitle(newTodo.getTitle());
             todo.setCompleted(newTodo.getCompleted());
@@ -110,8 +110,9 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public ApiResponse deleteTodo(Long id, UserPrincipal currentUser) {
         User user = userRepository.getUser(currentUser);
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TODO, ID, id));
+        Todo todo = (Todo) findResourceById(id, TODO, id);
 
+        assert todo != null;
         if(todo.getUser().getId().equals(user.getId())){
             todoRepository.deleteById(id);
             return new ApiResponse(Boolean.TRUE, "You successfully deleted todo");
