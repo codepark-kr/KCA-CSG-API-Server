@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.3"
 }
 
 group = 'com.kca'
@@ -16,6 +17,14 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "codepark-kr_KCA-CSG"
+		property "sonar.organization", "codepark-kr"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
 
 dependencies {
@@ -33,6 +42,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
 	implementation "io.springfox:springfox-boot-starter:3.0.0"
+	implementation 'org.modelmapper:modelmapper:2.4.4'
 
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
