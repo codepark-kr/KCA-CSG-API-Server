@@ -32,7 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
@@ -41,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/checkUsername", "/api/users/checkEmail").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/checkUsername", "/api/user/checkEmail").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -61,5 +60,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 }
