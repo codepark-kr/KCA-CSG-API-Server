@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kca.csg.util.AppConstants.*;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -65,15 +67,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public User addUser(User user){
         if(userRepository.existsByUsername(user.getUsername())){
-                ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Username is already taken");
+                ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, EXIST_USERNAME);
                 throw new BadRequestException(apiResponse);
             }
         if(userRepository.existsByEmail(user.getEmail())){
-            ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Email is already taken");
+            ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, EXIST_EMAIL);
             throw new BadRequestException(apiResponse);
         }
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
         User.builder().roles(roles).password(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
@@ -112,8 +114,8 @@ public class UserServiceImpl implements UserService{
     public ApiResponse grantAdmin(String username){
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException("User role not set")));
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
+        roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOTSET)));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
         User.builder().roles(roles).build();
         userRepository.save(user);
 
@@ -124,7 +126,7 @@ public class UserServiceImpl implements UserService{
     public ApiResponse retrieveAdmin(String username){
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
         User.builder().roles(roles).build();
         userRepository.save(user);
 
