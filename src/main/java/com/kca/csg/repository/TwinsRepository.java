@@ -14,7 +14,7 @@ public interface TwinsRepository extends JpaRepository<Twins, Long> {
 
     Page<Twins> findByCreatedBy(Long userId, Pageable pageable);
     Page<Twins> findByCategory(Long categoryId, Pageable pageable);
-    Page<Twins> findByTags(List<Tag> tags, Pageable pageable);
+    Page<Twins> findByTagsIn(List<Tag> tags, Pageable pageable);
 
     Long countByCreatedBy(Long userId);
 }

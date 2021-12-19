@@ -78,7 +78,7 @@ public class TwinsServiceImpl implements TwinsService {
         pageValidation(page, size);
         Tag tag = (Tag) findResourceById(id, TAG, ID);
         sortDescending(page, size);
-        Page<Twins> twins = twinsRepository.findByTags(Collections.singletonList(tag), sortDescending(page, size));
+        Page<Twins> twins = twinsRepository.findByTagsIn(Collections.singletonList(tag), sortDescending(page, size));
         List<Twins> content = twins.getNumberOfElements() == 0 ? Collections.emptyList() : twins.getContent();
 
         return new PagedResponse<>(content, twins.getNumber(), twins.getSize(), twins.getTotalElements(), twins.getTotalPages(), twins.isLast());
