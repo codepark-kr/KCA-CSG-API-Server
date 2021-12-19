@@ -12,6 +12,7 @@ import com.kca.csg.payload.response.JwtAuthenticationResponse;
 import com.kca.csg.repository.RoleRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.JwtTokenProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +33,7 @@ import java.util.List;
 
 import static com.kca.csg.util.AppConstants.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -63,14 +65,13 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
+
         if(Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))){
             throw new ApiException(HttpStatus.BAD_REQUEST, EXIST_USERNAME); }
-
         if(Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))){
             throw new ApiException(HttpStatus.BAD_REQUEST, EXIST_EMAIL); }
 
-        User user = new User();
-        User.builder()
+        User user = User.builder()
                 .firstName(signUpRequest.getFirstName().toLowerCase())
                 .lastName(signUpRequest.getLastName().toLowerCase())
                 .username(signUpRequest.getUsername().toLowerCase())
@@ -78,6 +79,7 @@ public class AuthController {
                 .password(passwordEncoder.encode(signUpRequest.getPassword().toLowerCase()))
                 .build();
 
+        log.info("? {}", user);
         List<Role> roles = new ArrayList<>();
 
         if(userRepository.count() == 0){
