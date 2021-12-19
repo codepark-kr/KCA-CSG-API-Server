@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,6 +29,7 @@ import static com.kca.csg.util.GlobalUtils.findResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;
 
+@Service
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepository albumRepository;
