@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static com.kca.csg.util.AppConstants.DEFAULT_PAGE_NUMBER;
-import static com.kca.csg.util.AppConstants.DEFAULT_PAGE_SIZE;
+import static com.kca.csg.util.Constants.*;
 
 @RestController
 @RequestMapping("/api/user")

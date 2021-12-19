@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import static com.kca.csg.util.AppConstants.*;
+import static com.kca.csg.util.Constants.*;
 
 public class GlobalUtils {
 

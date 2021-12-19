@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.kca.csg.util.AppConstants.*;
+import static com.kca.csg.util.Constants.*;
 import static com.kca.csg.util.GlobalUtils.findResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;

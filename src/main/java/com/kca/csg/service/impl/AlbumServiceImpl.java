@@ -23,8 +23,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.kca.csg.util.AppConstants.ALBUM;
-import static com.kca.csg.util.AppConstants.NO_PERMISSION;
+import static com.kca.csg.util.Constants.*;
 import static com.kca.csg.util.GlobalUtils.findResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;

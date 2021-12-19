@@ -29,9 +29,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static com.kca.csg.util.AppConstants.*;
+import static com.kca.csg.util.Constants.*;
 
 @Slf4j
 @RestController
@@ -79,7 +80,7 @@ public class AuthController {
                 .password(passwordEncoder.encode(signUpRequest.getPassword().toLowerCase()))
                 .build();
 
-        log.info("? {}", user);
+        log.info("user ? {}", user);
         List<Role> roles = new ArrayList<>();
 
         if(userRepository.count() == 0){

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kca.csg.util.AppConstants.*;
+import static com.kca.csg.util.Constants.*;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", username));
 
-        if(!user.getId().equals(currentUser.getId() )
+        if(!user.getId().equals(currentUser.getId())
                 || !currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
             ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You dont' have permission to delete profile of : " + username);
             throw new AccessDeniedException(apiResponse);
