@@ -42,6 +42,4 @@ public class Album  extends UserDateAudit {
     public void setPhoto(List<Photo> photo){
         if(photo == null){ this.photo = null; } else { this.photo = Collections.unmodifiableList(photo); }
     }
-
-
 }

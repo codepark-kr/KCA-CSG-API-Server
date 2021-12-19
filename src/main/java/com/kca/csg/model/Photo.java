@@ -45,5 +45,4 @@ public class Photo  extends UserDateAudit {
 
     @JsonIgnore
     public Album getAlbum(){ return album; }
-
 }

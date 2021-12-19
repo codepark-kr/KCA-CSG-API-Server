@@ -37,6 +37,5 @@ public class Tag extends UserDateAudit {
     }
 
     public List<Twins> getTwins(){ return twins == null ? null : new ArrayList<>(twins); }
-
     public void setTwins(List<Twins> twins){ if(twins == null){ this.twins = null; } else { this.twins = Collections.unmodifiableList(twins); } }
 }

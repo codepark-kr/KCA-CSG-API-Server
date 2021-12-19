@@ -13,18 +13,18 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails{
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String username;
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
+    private final String username;
 
     @JsonIgnore
-    private String email;
+    private final String email;
 
     @JsonIgnore
-    private String password;
+    private final String password;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrincipal(Long id, String firstName, String lastName, String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities){

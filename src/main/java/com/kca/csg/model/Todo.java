@@ -33,5 +33,4 @@ public class Todo extends UserDateAudit {
 
     @JsonIgnore
     public User getUser(){ return user; }
-
 }

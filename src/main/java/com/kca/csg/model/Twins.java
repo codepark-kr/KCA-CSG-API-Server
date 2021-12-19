@@ -17,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "TWINS")
+@Table(name = "twins")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Twins extends UserDateAudit {
 
@@ -25,16 +25,16 @@ public class Twins extends UserDateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "korTitle")
+    @Column(name = "kor_title")
     private String korTitle;
 
-    @Column(name = "korContent")
+    @Column(name = "kor_content")
     private String korContent;
 
-    @Column(name = "engTitle")
+    @Column(name = "eng_title")
     private String engTitle;
 
-    @Column(name = "engContent")
+    @Column(name = "eng_content")
     private String engContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -63,5 +63,4 @@ public class Twins extends UserDateAudit {
 
     public List<Tag> getTags(){ return tags == null ? null : new ArrayList<>(tags); }
     public void setTags(List<Tag> tags){ if(tags == null){ this.tags = null; } else { this.tags = Collections.unmodifiableList(tags); } }
-
 }

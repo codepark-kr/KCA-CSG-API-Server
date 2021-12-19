@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UnauthorizedException extends RuntimeException{
 
     private ApiResponse apiResponse;
-
     private String message;
 
     public UnauthorizedException(ApiResponse apiResponse){
@@ -24,19 +23,15 @@ public class UnauthorizedException extends RuntimeException{
     public UnauthorizedException(String message, Throwable cause){
         super(message, cause);
     }
-
     public ApiResponse getApiResponse(){
         return apiResponse;
     }
-
     public void setApiResponse(ApiResponse apiResponse){
         this.apiResponse = apiResponse;
     }
-
     public String getMessage(){
         return message;
     }
-
     public void setMessage(String message){
          this.message = message;
     }

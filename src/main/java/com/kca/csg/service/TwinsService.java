@@ -17,7 +17,6 @@ public interface TwinsService {
     Twins updateTwins(Long id, TwinsRequest newTwinsRequest, UserPrincipal currentUser);
     Twins getTwins(Long id);
 
-    ApiResponse deleteTwins(Long id, UserPrincipal currentUser);
-
     TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser);
+    ApiResponse deleteTwins(Long id, UserPrincipal currentUser);
 }

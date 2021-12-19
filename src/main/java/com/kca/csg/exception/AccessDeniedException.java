@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class AccessDeniedException  extends RuntimeException{
 
     private ApiResponse apiResponse;
-
     private String message;
 
     public AccessDeniedException(ApiResponse apiResponse){
@@ -20,7 +19,6 @@ public class AccessDeniedException  extends RuntimeException{
         super(message);
         this.message = message;
     }
-
     public AccessDeniedException(String message, Throwable cause){
         super(message, cause);
     }
@@ -28,7 +26,6 @@ public class AccessDeniedException  extends RuntimeException{
     public ApiResponse getApiResponse(){
         return apiResponse;
     }
-
     public void setApiResponse(ApiResponse apiResponse){
         this.apiResponse = apiResponse;
     }
@@ -36,7 +33,6 @@ public class AccessDeniedException  extends RuntimeException{
     public String getMessage(){
         return message;
     }
-
     public void setMessage(String message){
         this.message = message;
     }
