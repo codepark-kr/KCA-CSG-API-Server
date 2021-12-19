@@ -75,7 +75,7 @@ public class AuthController {
                 .lastName(signUpRequest.getLastName().toLowerCase())
                 .username(signUpRequest.getUsername().toLowerCase())
                 .email(signUpRequest.getEmail().toLowerCase())
-                .password(signUpRequest.getPassword().toLowerCase())
+                .password(passwordEncoder.encode(signUpRequest.getPassword().toLowerCase()))
                 .build();
 
         List<Role> roles = new ArrayList<>();
