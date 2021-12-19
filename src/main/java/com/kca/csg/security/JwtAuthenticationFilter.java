@@ -1,9 +1,9 @@
 package com.kca.csg.security;
 
 import com.kca.csg.service.CustomUserDetailsService;
+import lombok.NoArgsConstructor;
 import org.mariadb.jdbc.internal.logging.Logger;
 import org.mariadb.jdbc.internal.logging.LoggerFactory;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@NoArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
-    private final JwtTokenProvider tokenProvider;
-    private final CustomUserDetailsService customUserDetailsService;
+    private JwtTokenProvider tokenProvider;
+    private CustomUserDetailsService customUserDetailsService;
 
     public JwtAuthenticationFilter(JwtTokenProvider tokenProvider, CustomUserDetailsService customUserDetailsService) {
         this.tokenProvider = tokenProvider;
