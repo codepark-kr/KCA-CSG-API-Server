@@ -15,5 +15,9 @@ public class AppConstants {
     public static final String TAG = "Tag";
     public static final String TWINS = "Twins";
     public static final String TODO = "Todo";
+
     public static final String NO_PERMISSION = "You dont' have permission to make this operation";
+    public static final String ROLE_NOTSET = "User role not set";
+    public static final String EXIST_USERNAME = "Username is already taken";
+    public static final String EXIST_EMAIL = "Email is already taken";
 }
