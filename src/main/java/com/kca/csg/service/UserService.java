@@ -21,6 +21,6 @@ public interface UserService {
 
     ApiResponse deleteUser(String username, UserPrincipal currentUser);
     ApiResponse grantAdmin(String username);
-    ApiResponse removeAdmin(String username);
+    ApiResponse retrieveAdmin(String username);
 
 }

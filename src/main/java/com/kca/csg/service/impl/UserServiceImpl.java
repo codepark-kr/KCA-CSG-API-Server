@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ApiResponse removeAdmin(String username){
+    public ApiResponse retrieveAdmin(String username){
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User role not set")));
