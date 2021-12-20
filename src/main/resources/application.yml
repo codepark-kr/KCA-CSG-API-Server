@@ -1,6 +1,8 @@
 server:
   port: 3000
+spring:
   jpa:
+    show-sql: true
     properties:
       hibernate:
         defer-datasource-initialization: true
@@ -8,31 +10,28 @@ server:
         format_sql: true
         highlight_sql: true
         grobally_quoted_identifiers: true
-        temp:
-          use_jdbc_metadata_defaults: false
-        ddl-auto: update
+        ddl-auto: none
         dialect: org.hibernate.dialect.MariaDB103Dialect
-    show-sql: true
-    generate-ddl: true
-  jackson:
-    serialization:
-      WRITE_DATES_AS_TIMESTAMPS: false
-    time-zone: UTC
-  jwt:
-    secret: jwtsecret
-  logging.level:
-    org.hibernate.SQL: debug
-cors:
-  allowedOrigins: '*'
-app:
-  jwtSecret: secret
-  jwtExpirationInMs: 360000
-
-spring:
-  main:
-    allow-bean-definition-overriding: true
+        generate-ddl: false
+    defer-datasource-initialization: true
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb;MODE=MYSQL
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: Asia/Seoul
+  sql:
+    init:
+      schema-locations: classpath:/database/schema.sql
+      data-locations: classpath:/database/data.sql
+      mode: always
+      continue-on-error: true
+logging:
+  level:
+    org.hibernate.SQL: debug
+app:
+  jwtSecret: secret
+  jwtExpirationInMs: 360000
