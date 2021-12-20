@@ -11,11 +11,10 @@ spring:
         show_sql: true
         format_sql: true
         highlight_sql: true
-        grobally_quoted_identifiers: true
+        globally_quoted_identifiers: true
         ddl-auto: none
-        dialect: org.hibernate.dialect.MariaDB103Dialect
+#        dialect: org.hibernate.dialect.MariaDB103Dialect
         generate-ddl: false
-    defer-datasource-initialization: true
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
