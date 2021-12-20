@@ -3,13 +3,14 @@ server:
   jpa:
     properties:
       hibernate:
+        defer-datasource-initialization: true
         show_sql: true
         format_sql: true
         highlight_sql: true
         grobally_quoted_identifiers: true
         temp:
           use_jdbc_metadata_defaults: false
-        ddl-auto: validate
+        ddl-auto: update
         dialect: org.hibernate.dialect.MariaDB103Dialect
     show-sql: true
     generate-ddl: true
@@ -30,3 +31,8 @@ app:
 spring:
   main:
     allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    url: jdbc:h2:mem:testdb
