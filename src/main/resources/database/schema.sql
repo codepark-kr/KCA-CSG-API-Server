@@ -1,7 +1,3 @@
-USE KCA;
-
-UNLOCK TABLES;
-
 DROP TABLE IF EXISTS 'twins_tag';
 DROP TABLE IF EXISTS 'tags';
 DROP TABLE IF EXISTS 'user_role';
@@ -139,7 +135,3 @@ CREATE TABLE 'user_role' (
                              CONSTRAINT 'fk_security_user_id' FOREIGN KEY ('user_id') REFERENCES 'users' ('id'),
                              CONSTRAINT 'fk_security_role_id' FOREIGN KEY ('role_id') REFERENCES 'roles' ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-LOCK TABLES 'roles' WRITE;
-INSERT INTO 'roles' VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
-UNLOCK TABLES;
