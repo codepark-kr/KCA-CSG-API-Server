@@ -78,9 +78,9 @@ public class AuthController {
                 .username(signUpRequest.getUsername().toLowerCase())
                 .email(signUpRequest.getEmail().toLowerCase())
                 .password(passwordEncoder.encode(signUpRequest.getPassword().toLowerCase()))
+                .contact(signUpRequest.getContact())
                 .build();
 
-        log.info("user ? {}", user);
         List<Role> roles = new ArrayList<>();
 
         if(userRepository.count() == 0){
@@ -89,6 +89,7 @@ public class AuthController {
         } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET))); }
 
         user.setRoles(roles);
+        log.info("user ? {}", user);
         User result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{userId}")
                 .buildAndExpand(result.getId()).toUri();
