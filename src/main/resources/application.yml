@@ -35,5 +35,5 @@ logging:
   level:
     org.hibernate.SQL: debug
 app:
-  jwtSecret: secret
+  jwtSecret: jwtSecretKey
   jwtExpirationInMs: 360000
