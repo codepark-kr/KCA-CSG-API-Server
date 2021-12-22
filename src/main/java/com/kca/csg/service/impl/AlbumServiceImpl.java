@@ -58,7 +58,6 @@ public class AlbumServiceImpl implements AlbumService {
         sortDescending(page, size);
         Page<Album> albums = albumRepository.findAll(sortDescending(page, size));
 
-        assert albums != null;
         if(albums.getNumberOfElements() == 0){
             return new PagedResponse<>(Collections.emptyList(), albums.getNumber(), albums.getSize(), albums.getTotalElements(),
                     albums.getTotalPages(), albums.isLast());
