@@ -14,6 +14,7 @@ import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.AlbumService;
 import com.kca.csg.service.TwinsService;
 import com.kca.csg.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +24,7 @@ import javax.validation.Valid;
 
 import static com.kca.csg.util.Constants.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -47,14 +49,17 @@ public class UserController {
 
     @GetMapping("/checkName")
     public ResponseEntity<UserIdentityAvailability> checkUserNameAvailability(@RequestParam(value = "username") String username){
-        UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username);
+        log.info("requested username ? = {}", username.substring(10));
+        UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username.substring(10));
 
         return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
     }
 
     @GetMapping("/checkEmail")
     public ResponseEntity<UserIdentityAvailability> checkEmailAvailability(@RequestParam(value = "email") String email){
-        UserIdentityAvailability userIdentityAvailability = userService.checkEmailAvailability(email);
+        log.info("requested email address ? = {}", email);
+        log.info("requested email address ? = {}", email.substring(7));
+        UserIdentityAvailability userIdentityAvailability = userService.checkEmailAvailability(email.substring(7));
 
         return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
     }
