@@ -1,6 +1,8 @@
 package com.kca.csg.config;
 
+import com.kca.csg.aop.LoggingAspect;
 import com.kca.csg.security.UserPrincipal;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
