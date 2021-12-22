@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
     @Bean
-    public Docket SwaggerConfig(){
+    public Docket swaggerConfig(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
                 .apis(RequestHandlerSelectors.basePackage("com.kca.csg")).paths(PathSelectors.any()).build();
     }

@@ -110,4 +110,8 @@ public class UserPrincipal implements UserDetails{
     public String getLastName() {
         return lastName;
     }
+
+    public String getContact() {
+        return contact;
+    }
 }

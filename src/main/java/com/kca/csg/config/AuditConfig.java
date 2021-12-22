@@ -1,12 +1,11 @@
 package com.kca.csg.config;
 
-import com.kca.csg.aop.LoggingAspect;
 import com.kca.csg.security.UserPrincipal;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +22,7 @@ public class AuditConfig {
 
 class SpringSecurityAuditAwareImpl implements AuditorAware<Long>{
 
+    @NonNull
     @Override
     public Optional<Long> getCurrentAuditor(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
