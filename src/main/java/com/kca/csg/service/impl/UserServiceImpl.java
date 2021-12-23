@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService{
             throw new BadRequestException(apiResponse);
         }
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
         User.builder().roles(roles).password(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService{
                     .contact(newUser.getContact()).build();
             return userRepository.save(user);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to update profile of : " + username);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO + "update profile of : " + username);
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -114,8 +114,8 @@ public class UserServiceImpl implements UserService{
     public ApiResponse grantAdmin(String username){
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOTSET)));
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
+        roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
         User.builder().roles(roles).build();
         userRepository.save(user);
 
@@ -126,7 +126,7 @@ public class UserServiceImpl implements UserService{
     public ApiResponse retrieveAdmin(String username){
         User user = userRepository.getUserByName(username);
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
         User.builder().roles(roles).build();
         userRepository.save(user);
 

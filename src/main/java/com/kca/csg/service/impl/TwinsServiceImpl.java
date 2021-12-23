@@ -92,16 +92,16 @@ public class TwinsServiceImpl implements TwinsService {
         assert twins != null;
         if(twins.getUser().getId().equals(currentUser.getId())
             || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
-            Twins.builder()
+            Twins newTwins = Twins.builder()
             .korTitle(newTwinsRequest.getKorTitle())
             .korContent(newTwinsRequest.getKorContent())
             .engTitle(newTwinsRequest.getEngTitle())
             .engContent(newTwinsRequest.getEngContent())
             .category(category).build();
 
-            return twinsRepository.save(twins);
+            return twinsRepository.save(newTwins);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to edit this post");
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO + "edit this post");
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -114,7 +114,7 @@ public class TwinsServiceImpl implements TwinsService {
          twinsRepository.deleteById(id);
          return new ApiResponse(Boolean.TRUE, "You successfully deleted the post");
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to delete this post");
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO + "delete this post");
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -130,15 +130,14 @@ public class TwinsServiceImpl implements TwinsService {
             tags.add(tag);
         }
 
-        Twins twins = new Twins();
-        Twins.builder().korTitle(twinsRequest.getKorTitle()).korContent(twinsRequest.getKorContent())
+        Twins twins = Twins.builder()
+                .korTitle(twinsRequest.getKorTitle()).korContent(twinsRequest.getKorContent())
                 .engTitle(twinsRequest.getEngTitle()).engContent(twinsRequest.getEngContent())
                 .category(category).user(user).tags(tags).build();
 
         Twins newTwins = twinsRepository.save(twins);
-        TwinsResponse twinsResponse = new TwinsResponse();
-
-        TwinsResponse.builder().korTitle(newTwins.getKorTitle()).korContent(newTwins.getKorContent())
+        TwinsResponse twinsResponse = TwinsResponse.builder()
+                .korTitle(newTwins.getKorTitle()).korContent(newTwins.getKorContent())
                 .engTitle(newTwins.getEngTitle()).engContent(newTwins.getEngContent())
                 .category(newTwins.getCategory().getName()).build();
 
@@ -151,6 +150,6 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public Twins getTwins(Long id){
-        return (Twins) findResourceById(id, USER, id);
+        return (Twins) findResourceById(id, TWINS, id);
     }
 }

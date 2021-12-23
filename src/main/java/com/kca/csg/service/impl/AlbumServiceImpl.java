@@ -97,7 +97,7 @@ public class AlbumServiceImpl implements AlbumService {
             modelMapper.map(updatedAlbum, albumResponse);
             return new ResponseEntity<>(albumResponse, HttpStatus.OK);
         }
-        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION);
+        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION_TO_MAKE_OPERATION);
     }
 
     @Override
@@ -111,6 +111,6 @@ public class AlbumServiceImpl implements AlbumService {
         albumRepository.deleteById(id);
         return new ResponseEntity<>(new ApiResponse(Boolean.TRUE, "You successfully deleted album"), HttpStatus.OK);
         }
-        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION);
+        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION_TO_MAKE_OPERATION);
     }
 }

@@ -43,7 +43,7 @@ public class TodoServiceImpl implements TodoService {
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -60,7 +60,7 @@ public class TodoServiceImpl implements TodoService {
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -80,7 +80,7 @@ public class TodoServiceImpl implements TodoService {
         assert todo != null;
         if(todo.getUser().getId().equals(user.getId())){ return todo; }
 
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -103,7 +103,7 @@ public class TodoServiceImpl implements TodoService {
             todo.setCompleted(newTodo.getCompleted());
         return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
         throw new UnauthorizedException(apiResponse);
     }
 
@@ -117,7 +117,7 @@ public class TodoServiceImpl implements TodoService {
             todoRepository.deleteById(id);
             return new ApiResponse(Boolean.TRUE, "You successfully deleted todo");
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION);
+        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
         throw new UnauthorizedException(apiResponse);
     }
 }
