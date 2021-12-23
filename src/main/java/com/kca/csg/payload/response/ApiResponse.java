@@ -3,6 +3,7 @@ package com.kca.csg.payload.response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -13,12 +14,15 @@ import java.io.Serializable;
 public class ApiResponse implements Serializable {
 
     @JsonProperty("success")
+    @ApiModelProperty(example = "true")
     private Boolean success;
 
     @JsonProperty("message")
+    @ApiModelProperty(example = "You retrieve ADMIN role from user : testpark")
     private String message;
 
     @JsonIgnore
+    @ApiModelProperty(example = "200")
     private HttpStatus status;
 
     public ApiResponse(){}
