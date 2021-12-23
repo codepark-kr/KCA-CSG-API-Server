@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS 'twins';
 DROP TABLE IF EXISTS 'photos';
 DROP TABLE IF EXISTS 'albums';
 DROP TABLE IF EXISTS 'todos';
+DROP TABLE IF EXISTS 'shorties';
 DROP TABLE IF EXISTS 'users';
 
 CREATE TABLE 'tags' (
@@ -89,6 +90,22 @@ CREATE TABLE 'twins' (
                          KEY 'fk_user_twins' ('user_id'),
                          CONSTRAINT 'fk_user_twins' FOREIGN KEY ('user_id') REFERENCES 'users' ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'shorties' (
+                            'id' bigint(19) unsigned NOT NULL AUTO_INCREMENT,
+                            'first_thread_id' bigint(19) unsigned,
+                            'thread_order' bigint(19) unsigned DEFAULT 1,
+                            'title' varchar(255),
+                            'content' varchar(500) NOT NULL,
+                            'user_id' bigint(19) unsigned DEFAULT NULL,
+                            'created_at' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            'updated_at' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            'created_by' bigint(19) unsigned NOT NULL,
+                            'updated_by' bigint(19) unsigned NOT NULL,
+                            PRIMARY KEY ('id'),
+                            CONSTRAINT 'fk_first_thread_id_shorties' FOREIGN KEY ('first_thread_id') REFERENCES 'shorties' ('id'),
+                            CONSTRAINT 'fk_shorties_user' FOREIGN KEY ('user_id') REFERENCES 'users' ('id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE 'twins_tag' (
                             'id' bigint(19) unsigned NOT NULL AUTO_INCREMENT,
