@@ -14,6 +14,8 @@ import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.AlbumService;
 import com.kca.csg.service.TwinsService;
 import com.kca.csg.service.UserService;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ public class UserController {
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
+    @ApiOperation(value = "Get summary of current user")
     public ResponseEntity<UserSummary> getCurrentUser(@CurrentUser UserPrincipal currentUser){
         UserSummary userSummary = userService.getCurrentUser(currentUser);
 
@@ -48,6 +51,7 @@ public class UserController {
     }
 
     @GetMapping("/checkName")
+    @ApiOperation(value = "Check availability of specific username")
     public ResponseEntity<UserIdentityAvailability> checkUserNameAvailability(@RequestParam(value = "username") String username){
         log.info("requested username ? = {}", username.substring(10));
         UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username.substring(10));
@@ -56,6 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/checkEmail")
+    @ApiOperation(value = "Check availability of specific email")
     public ResponseEntity<UserIdentityAvailability> checkEmailAvailability(@RequestParam(value = "email") String email){
         log.info("requested email address ? = {}", email);
         log.info("requested email address ? = {}", email.substring(7));
@@ -65,6 +70,7 @@ public class UserController {
     }
 
     @GetMapping("/profile/{username}")
+    @ApiOperation(value = "Get all information of current user")
     public ResponseEntity<UserProfile> getUserProfile(@PathVariable(value = "username") String username){
         UserProfile userProfile = userService.getUserProfile(username);
 
@@ -72,6 +78,7 @@ public class UserController {
     }
 
     @GetMapping("/twins/{username}")
+    @ApiOperation(value = "Get twins the type of posts by this current user")
     public ResponseEntity<PagedResponse<Twins>> getTwinsCreatedBy(@PathVariable(value = "username") String username,
              @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer page,
              @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer size){
@@ -81,6 +88,7 @@ public class UserController {
     }
 
     @GetMapping("/albums/{username}")
+    @ApiOperation(value = "Get album of this current user")
     public ResponseEntity<PagedResponse<Album>> getUserAlbums(@PathVariable(value = "username") String username,
              @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer page,
              @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer size){
@@ -91,6 +99,7 @@ public class UserController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Add user as user-role by current user with admin-authority")
     public ResponseEntity<User> addUser(@Valid @RequestBody User user){
         User newUser = userService.addUser(user);
 
@@ -99,6 +108,7 @@ public class UserController {
 
     @PutMapping("/{username}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Update information of specific user by current user with admin-authority")
     public ResponseEntity<User> updateUser(@Valid @RequestBody User newUser,
              @PathVariable(value = "username") String username, @CurrentUser UserPrincipal currentUser){
         User updatedUser = userService.updateUser(newUser, username, currentUser);
@@ -108,6 +118,7 @@ public class UserController {
 
     @DeleteMapping("/{username}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Delete account of specific user by current user with admin-authority")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable(value = "username") String username, @CurrentUser UserPrincipal currentUser){
         ApiResponse apiResponse = userService.deleteUser(username, currentUser);
 
@@ -116,13 +127,16 @@ public class UserController {
 
     @PutMapping("/grantAdmin/{username}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Grant admin-role to specific user by current user with admin-authority")
     public ResponseEntity<ApiResponse> grantAdmin(@PathVariable(name = "username") String username){
         ApiResponse apiResponse = userService.grantAdmin(username);
 
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
+
     @PutMapping("/retrieveAdmin/{username}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Retrieve admin-role to specific user by current user with admin-authority")
     public ResponseEntity<ApiResponse> retrieveAdmin(@PathVariable(name = "username") String username){
         ApiResponse apiResponse = userService.retrieveAdmin(username);
 
