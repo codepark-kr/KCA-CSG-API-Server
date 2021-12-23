@@ -12,7 +12,6 @@ import com.kca.csg.payload.response.JwtAuthenticationResponse;
 import com.kca.csg.repository.RoleRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.JwtTokenProvider;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -87,9 +86,9 @@ public class AuthController {
         List<Role> roles = new ArrayList<>();
 
         if(userRepository.count() == 0){
-            roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
-            roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOTSET)));
-        } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET))); }
+            roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
+            roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
+        } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET))); }
 
         user.setRoles(roles);
         log.info("user ? {}", user);
