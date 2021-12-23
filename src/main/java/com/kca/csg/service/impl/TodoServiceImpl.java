@@ -14,10 +14,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static com.kca.csg.util.Constants.*;
 import static com.kca.csg.util.GlobalUtils.findResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
+import static com.kca.csg.util.ValidationUtils.noPermissionResponse;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -36,15 +39,13 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo completeTodo(Long id, UserPrincipal currentUser){
         Todo todo = (Todo) findResourceById(id, TODO, id);
-        User user = userRepository.getUser(currentUser);
 
         assert todo != null;
-        if(todo.getUser().getId().equals((user.getId()))){
+        if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
-        throw new UnauthorizedException(apiResponse);
+        throw new UnauthorizedException(noPermissionResponse());
     }
 
 /**     TODO: This conditional-statement as well.
@@ -53,15 +54,13 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo unCompleteTodo(Long id, UserPrincipal currentUser) {
         Todo todo = (Todo) findResourceById(id, TODO, id);
-        User user = userRepository.getUser(currentUser);
 
         assert todo!= null;
-        if(todo.getUser().getId().equals(user.getId())){
+        if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
             todo.setCompleted(Boolean.TRUE);
             return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
-        throw new UnauthorizedException(apiResponse);
+        throw new UnauthorizedException(noPermissionResponse());
     }
 
     @Override
@@ -78,46 +77,42 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = (Todo) findResourceById(id, TODO, id);
 
         assert todo != null;
-        if(todo.getUser().getId().equals(user.getId())){ return todo; }
+        if(isByCurrentUser(todo, user)){ return todo; }
 
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
-        throw new UnauthorizedException(apiResponse);
+        throw new UnauthorizedException(noPermissionResponse());
     }
 
     @Override
     public Todo addTodo(Todo todo, UserPrincipal currentUser) {
-        User user = userRepository.getUser(currentUser);
-        todo.setUser(user);
+        todo.setUser(userRepository.getUser(currentUser));
 
         return todoRepository.save(todo);
     }
 
     @Override
     public Todo updateTodo(Long id, Todo newTodo, UserPrincipal currentUser) {
-        User user = userRepository.getUser(currentUser);
         Todo todo = (Todo) findResourceById(id, TODO, id);
 
         assert todo != null;
-        if(todo.getUser().getId().equals(user.getId())){
+        if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
             todo.setTitle(newTodo.getTitle());
             todo.setCompleted(newTodo.getCompleted());
         return todoRepository.save(todo);
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
-        throw new UnauthorizedException(apiResponse);
+        throw new UnauthorizedException(noPermissionResponse());
     }
 
     @Override
     public ApiResponse deleteTodo(Long id, UserPrincipal currentUser) {
-        User user = userRepository.getUser(currentUser);
         Todo todo = (Todo) findResourceById(id, TODO, id);
 
         assert todo != null;
-        if(todo.getUser().getId().equals(user.getId())){
+        if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
             todoRepository.deleteById(id);
-            return new ApiResponse(Boolean.TRUE, "You successfully deleted todo");
+            return new ApiResponse(Boolean.TRUE, SUCCESS_DELETE + "todo");
         }
-        ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO_MAKE_OPERATION);
-        throw new UnauthorizedException(apiResponse);
+        throw new UnauthorizedException(noPermissionResponse());
     }
+
+    public Boolean isByCurrentUser(Todo todo, User user){ return todo.getUser().getId().equals(user.getId()); }
 }
