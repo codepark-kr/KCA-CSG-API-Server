@@ -24,7 +24,6 @@ import static com.kca.csg.util.Constants.DEFAULT_PAGE_SIZE;
 public class TwinsController {
 
     private final TwinsService twinsService;
-
     public TwinsController(TwinsService twinsService) {
         this.twinsService = twinsService;
     }
@@ -65,7 +64,7 @@ public class TwinsController {
     @PreAuthorize("hasRole('USER')")
     @ApiOperation(value = "Add single twins the type of post")
     public ResponseEntity<TwinsResponse> addTwins(@Valid @RequestBody TwinsRequest twinsRequest,
-             @CurrentUser UserPrincipal currentUser){
+                                                  @CurrentUser UserPrincipal currentUser){
         TwinsResponse twinsResponse = twinsService.addTwins(twinsRequest, currentUser);
 
         return new ResponseEntity<>(twinsResponse, HttpStatus.CREATED);
