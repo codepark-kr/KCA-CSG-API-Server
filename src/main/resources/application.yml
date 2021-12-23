@@ -14,7 +14,7 @@ spring:
         globally_quoted_identifiers: true
         ddl-auto: none
 #        dialect: org.hibernate.dialect.MariaDB103Dialect
-        generate-ddl: create
+        generate-ddl: none
     defer-datasource-initialization: true
   datasource:
     driver-class-name: org.h2.Driver
@@ -25,12 +25,11 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: Asia/Seoul
-#  sql:
-#    init:
-#      schema-locations: classpath:/database/schema.sql
-#      data-locations: classpath:/database/data.sql
-#      mode: always
-#      continue-on-error: true
+  sql:
+    init:
+      schema-locations: classpath:/database/schema.sql
+      mode: always
+      continue-on-error: true
 logging:
   level:
     org.hibernate.SQL: debug
