@@ -65,7 +65,6 @@ public class TwinsServiceImpl implements TwinsService {
     public PagedResponse<Twins> getTwinsByCategory(Long id, int page, int size){
         pageValidation(page, size);
         Category category = (Category) findResourceById(id, CATEGORY, ID);
-        sortDescending(page, size);
         assert category != null;
         Page<Twins> twins = twinsRepository.findByCategory(category.getId(), sortDescending(page, size));
         List<Twins> content = twins.getNumberOfElements() == 0 ? Collections.emptyList() : twins.getContent();
@@ -77,7 +76,6 @@ public class TwinsServiceImpl implements TwinsService {
     public PagedResponse<Twins> getTwinsByTag(Long id, int page, int size){
         pageValidation(page, size);
         Tag tag = (Tag) findResourceById(id, TAG, ID);
-        sortDescending(page, size);
         Page<Twins> twins = twinsRepository.findByTagsIn(Collections.singletonList(tag), sortDescending(page, size));
         List<Twins> content = twins.getNumberOfElements() == 0 ? Collections.emptyList() : twins.getContent();
 
@@ -112,7 +110,7 @@ public class TwinsServiceImpl implements TwinsService {
         if(twins.getUser().getId().equals(currentUser.getId())
             || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
          twinsRepository.deleteById(id);
-         return new ApiResponse(Boolean.TRUE, "You successfully deleted the post");
+         return new ApiResponse(Boolean.TRUE, SUCCESS_DELETE + "post");
         }
         ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO + "delete this post");
         throw new UnauthorizedException(apiResponse);

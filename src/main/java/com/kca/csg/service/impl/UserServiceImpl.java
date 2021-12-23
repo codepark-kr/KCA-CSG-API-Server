@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService{
             ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You dont' have permission to delete profile of : " + username);
             throw new AccessDeniedException(apiResponse);
         }
-        return new ApiResponse(Boolean.TRUE, "You successfully deleted profile of : "+username);
+        return new ApiResponse(Boolean.TRUE, SUCCESS_DELETE + "profile of : "+username);
     }
 
     @Override

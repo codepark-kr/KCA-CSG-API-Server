@@ -22,4 +22,5 @@ public class Constants {
     public static final String ROLE_NOT_SET = "User role not set";
     public static final String EXIST_USERNAME = "Username is already taken";
     public static final String EXIST_EMAIL = "Email is already taken";
+    public static final String SUCCESS_DELETE = "You successfully deleted the ";
 }

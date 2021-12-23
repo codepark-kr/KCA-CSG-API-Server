@@ -105,7 +105,7 @@ public class ShortiesServiceImpl implements ShortiesService {
         if(shorties.getUser().getId().equals(currentUser.getId())
                 || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))) {
         shortiesRepository.deleteById(id);
-        return new ApiResponse(Boolean.TRUE, "You successfully deleted the post");
+        return new ApiResponse(Boolean.TRUE, SUCCESS_DELETE + "post");
         }
         ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, NO_PERMISSION_TO + "delete this post");
         throw new UnauthorizedException(apiResponse);
