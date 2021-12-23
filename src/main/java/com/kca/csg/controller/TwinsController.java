@@ -81,7 +81,7 @@ public class TwinsController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @ApiOperation(value = "update specific twins the type of post")
+    @ApiOperation(value = "Update specific twins the type of post")
     public ResponseEntity<Twins> updateTwins(@PathVariable(name = "id") Long id,
              @Valid @RequestBody TwinsRequest newTwinsRequest, @CurrentUser UserPrincipal currentUser){
         Twins twins = twinsService.updateTwins(id, newTwinsRequest, currentUser);
