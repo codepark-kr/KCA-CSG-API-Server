@@ -8,6 +8,7 @@ import com.kca.csg.payload.response.TwinsResponse;
 import com.kca.csg.security.CurrentUser;
 import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.TwinsService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,7 @@ public class TwinsController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Get all twins the type of post")
     public ResponseEntity<PagedResponse<Twins>> getAllTwins(
             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer size){
@@ -38,6 +40,7 @@ public class TwinsController {
     }
 
     @GetMapping("/category/{id}")
+    @ApiOperation(value = "Get all twins the type of post by specific category")
     public ResponseEntity<PagedResponse<Twins>> getTwinsByCategory(
             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer size,
@@ -48,6 +51,7 @@ public class TwinsController {
     }
 
     @GetMapping("/tag/{id}")
+    @ApiOperation(value = "Get all twins the type of post by specific tag")
     public ResponseEntity<PagedResponse<Twins>> getTwinsByTag(
             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer size,
@@ -59,6 +63,7 @@ public class TwinsController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
+    @ApiOperation(value = "Add single twins the type of post")
     public ResponseEntity<TwinsResponse> addTwins(@Valid @RequestBody TwinsRequest twinsRequest,
              @CurrentUser UserPrincipal currentUser){
         TwinsResponse twinsResponse = twinsService.addTwins(twinsRequest, currentUser);
@@ -67,6 +72,7 @@ public class TwinsController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Get specific twins the type of post")
     public ResponseEntity<Twins> getTwins(@PathVariable(name = "id") Long id){
         Twins twins = twinsService.getTwins(id);
 
@@ -75,6 +81,7 @@ public class TwinsController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "update specific twins the type of post")
     public ResponseEntity<Twins> updateTwins(@PathVariable(name = "id") Long id,
              @Valid @RequestBody TwinsRequest newTwinsRequest, @CurrentUser UserPrincipal currentUser){
         Twins twins = twinsService.updateTwins(id, newTwinsRequest, currentUser);
@@ -84,6 +91,7 @@ public class TwinsController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Delete specific twins the type of post")
     public ResponseEntity<ApiResponse> deleteTwins(@PathVariable(name = "id") Long id, @CurrentUser UserPrincipal currentUser){
         ApiResponse apiResponse = twinsService.deleteTwins(id, currentUser);
 
