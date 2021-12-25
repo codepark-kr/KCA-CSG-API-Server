@@ -27,6 +27,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
 
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     @Override
     public PagedResponse<Category> getAllCategories(int page, int size) {
         pageValidation(page, size);
