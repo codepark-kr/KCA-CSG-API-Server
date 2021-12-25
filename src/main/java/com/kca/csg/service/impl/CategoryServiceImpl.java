@@ -25,7 +25,7 @@ import static com.kca.csg.util.ValidationUtils.pageValidation;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
@@ -54,6 +54,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<Category> updateCategory(Long id, Category category, UserPrincipal currentUser) throws UnauthorizedException {
         Category newCategory = (Category) findResourceById(id, CATEGORY, id);
+
+        assert newCategory != null;
         if(category.getCreatedBy().equals(currentUser.getId()) || currentUser.getAuthorities()
                 .contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
             category.setName(newCategory.getName());
@@ -65,6 +67,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<ApiResponse> deleteCategory(Long id, UserPrincipal currentUser) throws UnauthorizedException {
         Category category = (Category) findResourceById(id, CATEGORY, id);
+
+        assert category != null;
         if(category.getCreatedBy().equals(currentUser.getId()) || currentUser.getAuthorities()
                 .contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
             categoryRepository.deleteById(id);
