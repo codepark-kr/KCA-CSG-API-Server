@@ -15,14 +15,16 @@ public class GlobalUtils {
     private static TagRepository tagRepository;
     private static TwinsRepository twinsRepository;
     private static UserRepository userRepository;
+    private static ShortiesRepository shortiesRepository;
 
     public GlobalUtils(TodoRepository todoRepository, CategoryRepository categoryRepository, TagRepository tagRepository,
-                       TwinsRepository twinsRepository, UserRepository userRepository) {
+                       TwinsRepository twinsRepository, UserRepository userRepository, ShortiesRepository shortiesRepository) {
         GlobalUtils.todoRepository = todoRepository;
         GlobalUtils.categoryRepository = categoryRepository;
         GlobalUtils.tagRepository = tagRepository;
         GlobalUtils.twinsRepository = twinsRepository;
         GlobalUtils.userRepository = userRepository;
+        GlobalUtils.shortiesRepository = shortiesRepository;
     }
 
     public static Pageable sortDescending(int page, int size){
@@ -36,6 +38,7 @@ public class GlobalUtils {
             case CATEGORY: return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(CATEGORY, ID, fieldValue));
             case TAG: return tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(TAG, ID, fieldValue));
             case USER: return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(USER, ID, fieldValue));
+            case SHORTIES: return shortiesRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(SHORTIES, ID, fieldValue));
             default: return null;
         }
     }

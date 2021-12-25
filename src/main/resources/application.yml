@@ -1,5 +1,6 @@
 server:
   port: 3000
+
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -7,19 +8,19 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        defer-datasource-initialization: true
         show_sql: true
         format_sql: true
         highlight_sql: true
         globally_quoted_identifiers: true
         ddl-auto: none
 #        dialect: org.hibernate.dialect.MariaDB103Dialect
-        generate-ddl: false
+        generate-ddl: none
+    defer-datasource-initialization: true
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-    url: jdbc:h2:mem:testdb;MODE=MYSQL
+    url: jdbc:h2:mem:testdb;DATABASE_TO_UPPER=false;MODE=MYSQL
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
@@ -27,12 +28,11 @@ spring:
   sql:
     init:
       schema-locations: classpath:/database/schema.sql
-      data-locations: classpath:/database/data.sql
       mode: always
       continue-on-error: true
 logging:
   level:
     org.hibernate.SQL: debug
 app:
-  jwtSecret: secret
+  jwtSecret: jwtSecretKey
   jwtExpirationInMs: 360000

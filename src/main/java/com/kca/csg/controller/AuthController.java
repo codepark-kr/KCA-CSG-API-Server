@@ -12,6 +12,7 @@ import com.kca.csg.payload.response.JwtAuthenticationResponse;
 import com.kca.csg.repository.RoleRepository;
 import com.kca.csg.repository.UserRepository;
 import com.kca.csg.security.JwtTokenProvider;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.Constants.*;
@@ -54,6 +54,7 @@ public class AuthController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    @ApiOperation(value = "Sign In")
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthenticationResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(
@@ -64,6 +65,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
+    @ApiOperation(value = "Sign Up")
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
 
@@ -78,17 +80,18 @@ public class AuthController {
                 .username(signUpRequest.getUsername().toLowerCase())
                 .email(signUpRequest.getEmail().toLowerCase())
                 .password(passwordEncoder.encode(signUpRequest.getPassword().toLowerCase()))
+                .contact(signUpRequest.getContact())
                 .build();
 
-        log.info("user ? {}", user);
         List<Role> roles = new ArrayList<>();
 
         if(userRepository.count() == 0){
-            roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET)));
-            roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOTSET)));
-        } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOTSET))); }
+            roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
+            roles.add(roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new AppException(ROLE_NOT_SET)));
+        } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET))); }
 
         user.setRoles(roles);
+        log.info("user ? {}", user);
         User result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{userId}")
                 .buildAndExpand(result.getId()).toUri();

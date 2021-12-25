@@ -15,9 +15,12 @@ public class Constants {
     public static final String TAG = "Tag";
     public static final String TWINS = "Twins";
     public static final String TODO = "Todo";
+    public static final String SHORTIES = "Shorties";
 
-    public static final String NO_PERMISSION = "You don't have permission to make this operation";
-    public static final String ROLE_NOTSET = "User role not set";
+    public static final String NO_PERMISSION_TO_MAKE_OPERATION = "You don't have permission to make this operation";
+    public static final String NO_PERMISSION_TO = "You don't have permission to ";
+    public static final String ROLE_NOT_SET = "User role not set";
     public static final String EXIST_USERNAME = "Username is already taken";
     public static final String EXIST_EMAIL = "Email is already taken";
+    public static final String SUCCESS_DELETE = "You successfully deleted the ";
 }

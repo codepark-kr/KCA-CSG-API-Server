@@ -3,6 +3,7 @@ package com.kca.csg.payload.request;
 import com.kca.csg.model.Photo;
 import com.kca.csg.model.User;
 import com.kca.csg.payload.UserDateAuditPayload;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

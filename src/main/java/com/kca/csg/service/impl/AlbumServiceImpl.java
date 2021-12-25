@@ -44,7 +44,6 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public PagedResponse<Album> getUserAlbums(String username, int page, int size) {
         User user = userRepository.getUserByName(username);
-        sortDescending(page, size);
         Page<Album> albums = albumRepository.findByCreatedBy(user.getId(), sortDescending(page, size));
         List<Album> content = albums.getNumberOfElements() > 0 ? albums.getContent() : Collections.emptyList();
 
@@ -55,10 +54,8 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public PagedResponse<AlbumResponse> getAllAlbums(int page, int size) {
         pageValidation(page, size);
-        sortDescending(page, size);
         Page<Album> albums = albumRepository.findAll(sortDescending(page, size));
 
-        assert albums != null;
         if(albums.getNumberOfElements() == 0){
             return new PagedResponse<>(Collections.emptyList(), albums.getNumber(), albums.getSize(), albums.getTotalElements(),
                     albums.getTotalPages(), albums.isLast());
@@ -98,7 +95,7 @@ public class AlbumServiceImpl implements AlbumService {
             modelMapper.map(updatedAlbum, albumResponse);
             return new ResponseEntity<>(albumResponse, HttpStatus.OK);
         }
-        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION);
+        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION_TO_MAKE_OPERATION);
     }
 
     @Override
@@ -110,8 +107,8 @@ public class AlbumServiceImpl implements AlbumService {
         if(album.getUser().getId().equals(user.getId())
                 || currentUser.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
         albumRepository.deleteById(id);
-        return new ResponseEntity<>(new ApiResponse(Boolean.TRUE, "You successfully deleted album"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(Boolean.TRUE, SUCCESS_DELETE + "album"), HttpStatus.OK);
         }
-        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION);
+        throw new ApiException(HttpStatus.UNAUTHORIZED, NO_PERMISSION_TO_MAKE_OPERATION);
     }
 }

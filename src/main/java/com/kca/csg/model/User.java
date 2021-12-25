@@ -44,7 +44,7 @@ public class User extends DateAudit {
 
     @NotBlank
     @NaturalId
-    @Size(max = 40)
+    @Size(max = 100)
     @Column(name = "password")
     private String password;
 
@@ -55,6 +55,7 @@ public class User extends DateAudit {
     private String email;
 
     @Column(name = "contact")
+    @Size(min = 12, max = 20)
     private String contact;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -66,12 +67,13 @@ public class User extends DateAudit {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Twins> twins;
 
-    public User(String firstName, String lastName, String username, String email, String password){
+    public User(String firstName, String lastName, String username, String email, String password, String contact){
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.contact = contact;
     }
 
     public List<Role> getRoles(){ return roles == null ? null : new ArrayList<>(roles); }
