@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.Constants.*;
-import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.getResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;
 
@@ -64,7 +64,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByCategory(Long id, int page, int size){
         pageValidation(page, size);
-        Category category = (Category) findResourceById(id, CATEGORY, ID);
+        Category category = (Category) getResourceById(id, CATEGORY, ID);
         assert category != null;
         Page<Twins> twins = twinsRepository.findByCategory(category.getId(), sortDescending(page, size));
         List<Twins> content = twins.getNumberOfElements() == 0 ? Collections.emptyList() : twins.getContent();
@@ -75,7 +75,7 @@ public class TwinsServiceImpl implements TwinsService {
     @Override
     public PagedResponse<Twins> getTwinsByTag(Long id, int page, int size){
         pageValidation(page, size);
-        Tag tag = (Tag) findResourceById(id, TAG, ID);
+        Tag tag = (Tag) getResourceById(id, TAG, ID);
         Page<Twins> twins = twinsRepository.findByTagsIn(Collections.singletonList(tag), sortDescending(page, size));
         List<Twins> content = twins.getNumberOfElements() == 0 ? Collections.emptyList() : twins.getContent();
 
@@ -84,8 +84,8 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public Twins updateTwins(Long id, TwinsRequest newTwinsRequest, UserPrincipal currentUser){
-        Twins twins = (Twins) findResourceById(id, TWINS, id);
-        Category category = (Category) findResourceById(newTwinsRequest.getCategoryId(), CATEGORY, newTwinsRequest.getCategoryId());
+        Twins twins = (Twins) getResourceById(id, TWINS, id);
+        Category category = (Category) getResourceById(newTwinsRequest.getCategoryId(), CATEGORY, newTwinsRequest.getCategoryId());
 
         assert twins != null;
         if(twins.getUser().getId().equals(currentUser.getId())
@@ -104,7 +104,7 @@ public class TwinsServiceImpl implements TwinsService {
     }
 
     public ApiResponse deleteTwins(Long id, UserPrincipal currentUser){
-        Twins twins = (Twins) findResourceById(id, TWINS, id);
+        Twins twins = (Twins) getResourceById(id, TWINS, id);
 
         assert twins != null;
         if(twins.getUser().getId().equals(currentUser.getId())
@@ -118,8 +118,8 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public TwinsResponse addTwins(TwinsRequest twinsRequest, UserPrincipal currentUser){
-        User user = (User) findResourceById(currentUser.getId(), USER, 1L);
-        Category category = (Category) findResourceById(twinsRequest.getCategoryId(), CATEGORY, twinsRequest.getCategoryId());
+        User user = (User) getResourceById(currentUser.getId(), USER, 1L);
+        Category category = (Category) getResourceById(twinsRequest.getCategoryId(), CATEGORY, twinsRequest.getCategoryId());
         List<Tag> tags = new ArrayList<>(twinsRequest.getTags().size());
 
         for(String name : twinsRequest.getTags()){
@@ -148,6 +148,6 @@ public class TwinsServiceImpl implements TwinsService {
 
     @Override
     public Twins getTwins(Long id){
-        return (Twins) findResourceById(id, TWINS, id);
+        return (Twins) getResourceById(id, TWINS, id);
     }
 }

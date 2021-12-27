@@ -14,11 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import static com.kca.csg.util.Constants.*;
-import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.getResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.noPermissionResponse;
 
@@ -38,7 +36,7 @@ public class TodoServiceImpl implements TodoService {
 *             (last update: 12.16.2021.) */
     @Override
     public Todo completeTodo(Long id, UserPrincipal currentUser){
-        Todo todo = (Todo) findResourceById(id, TODO, id);
+        Todo todo = (Todo) getResourceById(id, TODO, id);
 
         assert todo != null;
         if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
@@ -53,7 +51,7 @@ public class TodoServiceImpl implements TodoService {
 *             (last update: 12.16.2021.) */
     @Override
     public Todo unCompleteTodo(Long id, UserPrincipal currentUser) {
-        Todo todo = (Todo) findResourceById(id, TODO, id);
+        Todo todo = (Todo) getResourceById(id, TODO, id);
 
         assert todo!= null;
         if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
@@ -74,7 +72,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo getTodo(Long id, UserPrincipal currentUser) {
         User user = userRepository.getUser(currentUser);
-        Todo todo = (Todo) findResourceById(id, TODO, id);
+        Todo todo = (Todo) getResourceById(id, TODO, id);
 
         assert todo != null;
         if(isByCurrentUser(todo, user)){ return todo; }
@@ -91,7 +89,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo updateTodo(Long id, Todo newTodo, UserPrincipal currentUser) {
-        Todo todo = (Todo) findResourceById(id, TODO, id);
+        Todo todo = (Todo) getResourceById(id, TODO, id);
 
         assert todo != null;
         if(isByCurrentUser(todo, userRepository.getUser(currentUser))){
@@ -104,7 +102,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public ApiResponse deleteTodo(Long id, UserPrincipal currentUser) {
-        Todo todo = (Todo) findResourceById(id, TODO, id);
+        Todo todo = (Todo) getResourceById(id, TODO, id);
 
         assert todo != null;
         if(isByCurrentUser(todo, userRepository.getUser(currentUser))){

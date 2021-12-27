@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.Constants.*;
-import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.getResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;
 
@@ -56,7 +56,7 @@ public class ShortiesServiceImpl implements ShortiesService {
 
     @Override
     public Shorties updateShorties(Long id, ShortiesRequest newShortiesRequest, UserPrincipal currentUser) {
-        Shorties shorties = (Shorties) findResourceById(id, SHORTIES, id);
+        Shorties shorties = (Shorties) getResourceById(id, SHORTIES, id);
 
         assert shorties != null;
         if(shorties.getUser().getId().equals(currentUser.getId())
@@ -74,11 +74,11 @@ public class ShortiesServiceImpl implements ShortiesService {
     }
 
     @Override
-    public Shorties getShorties(Long id) { return (Shorties) findResourceById(id, SHORTIES, id); }
+    public Shorties getShorties(Long id) { return (Shorties) getResourceById(id, SHORTIES, id); }
 
     @Override
     public ShortiesResponse addShorties(ShortiesRequest newShortiesRequest, UserPrincipal currentUser) {
-        User user = (User) findResourceById(currentUser.getId(), USER, 1L);
+        User user = (User) getResourceById(currentUser.getId(), USER, 1L);
 
         Shorties shorties = Shorties.builder()
                 .firstThreadId(newShortiesRequest.getFirstThreadId())
@@ -99,7 +99,7 @@ public class ShortiesServiceImpl implements ShortiesService {
 
     @Override
     public ApiResponse deleteShorties(Long id, UserPrincipal currentUser) {
-        Shorties shorties = (Shorties) findResourceById(id, SHORTIES, id);
+        Shorties shorties = (Shorties) getResourceById(id, SHORTIES, id);
 
         assert shorties != null;
         if(shorties.getUser().getId().equals(currentUser.getId())

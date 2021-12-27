@@ -11,7 +11,7 @@ public interface PhotoService {
     PagedResponse<PhotoResponse> getAllPhotos(int page, int size);
 
     PhotoResponse getPhoto(Long id);
-    PhotoResponse updatePhoto(Long id, PhotoResponse photoResponse, UserPrincipal currentUser);
+    PhotoResponse updatePhoto(Long id, PhotoRequest photoRequest, UserPrincipal currentUser);
     PhotoResponse addPhoto(PhotoRequest photoRequest, UserPrincipal currentUser);
 
     ApiResponse deletePhoto(Long id, UserPrincipal currentUser);

@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.Constants.*;
-import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.getResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;
 
@@ -78,12 +78,12 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public ResponseEntity<Album> getAlbum(Long id) {
-        return new ResponseEntity<>((Album) findResourceById(id, ALBUM, id), HttpStatus.CREATED);
+        return new ResponseEntity<>((Album) getResourceById(id, ALBUM, id), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<AlbumResponse> updateAlbum(Long id, AlbumRequest newAlbum, UserPrincipal currentUser) {
-        Album album = (Album) findResourceById(id, ALBUM, id);
+        Album album = (Album) getResourceById(id, ALBUM, id);
         User user = userRepository.getUser(currentUser);
 
         assert album != null;
@@ -100,7 +100,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public ResponseEntity<ApiResponse> deleteAlbum(Long id, UserPrincipal currentUser) {
-        Album album = (Album) findResourceById(id, ALBUM, id);
+        Album album = (Album) getResourceById(id, ALBUM, id);
         User user = userRepository.getUser(currentUser);
 
         assert album != null;

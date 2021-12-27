@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.kca.csg.util.Constants.*;
-import static com.kca.csg.util.GlobalUtils.findResourceById;
+import static com.kca.csg.util.GlobalUtils.getResourceById;
 import static com.kca.csg.util.GlobalUtils.sortDescending;
 import static com.kca.csg.util.ValidationUtils.pageValidation;
 
@@ -43,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<Category> getCategory(Long id) {
-        return new ResponseEntity<>((Category) findResourceById(id, CATEGORY, id), HttpStatus.OK);
+        return new ResponseEntity<>((Category) getResourceById(id, CATEGORY, id), HttpStatus.OK);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<Category> updateCategory(Long id, Category category, UserPrincipal currentUser) throws UnauthorizedException {
-        Category newCategory = (Category) findResourceById(id, CATEGORY, id);
+        Category newCategory = (Category) getResourceById(id, CATEGORY, id);
 
         assert newCategory != null;
         if(category.getCreatedBy().equals(currentUser.getId()) || currentUser.getAuthorities()
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<ApiResponse> deleteCategory(Long id, UserPrincipal currentUser) throws UnauthorizedException {
-        Category category = (Category) findResourceById(id, CATEGORY, id);
+        Category category = (Category) getResourceById(id, CATEGORY, id);
 
         assert category != null;
         if(category.getCreatedBy().equals(currentUser.getId()) || currentUser.getAuthorities()
