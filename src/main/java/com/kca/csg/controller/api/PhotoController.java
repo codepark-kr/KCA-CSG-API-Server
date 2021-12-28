@@ -1,4 +1,4 @@
-package com.kca.csg.controller;
+package com.kca.csg.controller.api;
 
 import com.kca.csg.payload.request.PhotoRequest;
 import com.kca.csg.payload.response.ApiResponse;
