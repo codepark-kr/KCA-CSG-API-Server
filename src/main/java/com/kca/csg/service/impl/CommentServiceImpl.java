@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public PagedResponse<Comment> getAllComments(Long twinsId, int page, int size) {
         pageValidation(page, size);
-        Page<Comment> comments = commentRepository.findByTwinsId(twinsId, (Pageable) sortDescending(page, size));
+        Page<Comment> comments = commentRepository.findByTwinsId(twinsId, sortDescending(page, size));
 
         return new PagedResponse<>(comments.getContent(), comments.getNumber(), comments.getSize(), comments.getTotalElements(), comments.getTotalPages(), comments.isLast());
     }
