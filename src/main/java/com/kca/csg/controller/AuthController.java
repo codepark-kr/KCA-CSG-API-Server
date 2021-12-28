@@ -91,7 +91,6 @@ public class AuthController {
         } else { roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException(ROLE_NOT_SET))); }
 
         user.setRoles(roles);
-        log.info("user ? {}", user);
         User result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{userId}")
                 .buildAndExpand(result.getId()).toUri();

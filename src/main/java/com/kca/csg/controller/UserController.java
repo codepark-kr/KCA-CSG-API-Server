@@ -53,7 +53,6 @@ public class UserController {
     @GetMapping("/checkName")
     @ApiOperation(value = "Check availability of specific username")
     public ResponseEntity<UserIdentityAvailability> checkUserNameAvailability(@RequestParam(value = "username") String username){
-        log.info("requested username ? = {}", username.substring(10));
         UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username.substring(10));
 
         return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
@@ -62,8 +61,6 @@ public class UserController {
     @GetMapping("/checkEmail")
     @ApiOperation(value = "Check availability of specific email")
     public ResponseEntity<UserIdentityAvailability> checkEmailAvailability(@RequestParam(value = "email") String email){
-        log.info("requested email address ? = {}", email);
-        log.info("requested email address ? = {}", email.substring(7));
         UserIdentityAvailability userIdentityAvailability = userService.checkEmailAvailability(email.substring(7));
 
         return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
