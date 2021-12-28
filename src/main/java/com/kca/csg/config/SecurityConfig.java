@@ -64,11 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-//    @Override
-//    public void configure(WebSecurity webSecurity){
-//        webSecurity.ignoring().antMatchers("/h2-console/**", "/swagger-ui/index.html/**");
-//    }
-
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
