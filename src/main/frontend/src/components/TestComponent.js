@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 
 const TestComponent=()=>{
     const outermostStyle={ width: '96%', marginLeft: '2%', height: '96%', marginTop: '2%',
         backgroundColor: 'var(--dusty-black)' }
+    const innerWrapper={ width: '100%', height: '96%', backgroundColor: 'var(--dusty-gray)' }
 
     return(
         <div style={ outermostStyle }>
+            <div style={ innerWrapper }>
+
+            </div>
         </div>
     );
 }
