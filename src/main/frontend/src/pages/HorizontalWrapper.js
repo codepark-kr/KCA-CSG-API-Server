@@ -8,7 +8,7 @@ const HorizontalWrapper=()=>{
         <>
             <div className="horizontalScroll">
                 <div className="item">
-                    <div className="bg">
+                    <div className="bg1">
                         < Header />
                         < TestComponent />
                     </div>

@@ -11,7 +11,9 @@
                         -webkit-transform: rotate(90deg) translate3d(0, calc(-100vh + 0px), 0);
                         transform: rotate(90deg) translate3d(0, calc(-100vh + 0px), 0); }
 
-.item { width: calc(100vh); height: calc(100vh); position: relative; }
-.item .bg, .bg2 { position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+//.item { width: calc(100vh); height: calc(100vh); position: relative; }
+.item { width: 1100px; height: calc(101vh); position: relative; }
+.item .bg, .bg1, .bg2 { position: absolute; top: 0; right: 0; bottom: 0; left: 0;
                   background: no-repeat center center / cover; }
+.bg1 { border: 1px solid var(--dusty-gray); }
 .bg2 { background-color: var(--dusty-gray); }
