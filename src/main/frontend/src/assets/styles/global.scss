@@ -19,6 +19,7 @@
     --young-cactus: #4d9f0c;
 
     --dusty-gray: #757164;
+    --dusty-pearl: #a49f8d;
     --dusty-black: #222423;
     --teal-point: #154946;
 
@@ -51,3 +52,8 @@ body { width: 100vw; height: 100vh; overflow-x: hidden; background-color: var(--
 
 // common elements
 h2 { text-transform: uppercase; }
+
+.buttonsWrapper { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin: 10px  }
+.writeButton { width: 48px; height: 48px; margin: 10px; background: var(--dusty-black); }
+.writeButton:hover { width: 0px; height: 0px; border-radius: .1rem; margin-left: 11px; border: 20px outset var(--dusty-gray);
+  cursor: pointer; }
