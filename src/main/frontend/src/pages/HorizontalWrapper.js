@@ -1,6 +1,7 @@
 import React from 'react';
 import '../assets/styles/horizontalWrapper.scss';
 import TestComponent from "../components/TestComponent";
+import Header from "../components/common/Header";
 
 const HorizontalWrapper=()=>{
     return(
@@ -8,6 +9,7 @@ const HorizontalWrapper=()=>{
             <div className="horizontalScroll">
                 <div className="item">
                     <div className="bg">
+                        < Header />
                         < TestComponent />
                     </div>
                 </div>
