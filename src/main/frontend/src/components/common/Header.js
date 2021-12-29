@@ -17,7 +17,7 @@ const Header=()=>{
     return(
         <div style={ outermostWrapper }>
             <header style={ headerWrapper } >
-                <p style={ headerLogo }>º&nbsp;&nbsp;Lorem Ipsum Neque Est</p>
+                <p style={ headerLogo }>º&nbsp; KCA-CSG ─ CONSOLE&nbsp; </p>
                 <div style={ navbar }>
                     <div className="buttonsWrapper">
                         <div style={ writeButton } className='writeButton'></div>
