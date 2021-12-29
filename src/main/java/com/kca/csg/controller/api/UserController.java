@@ -14,7 +14,6 @@ import com.kca.csg.security.UserPrincipal;
 import com.kca.csg.service.AlbumService;
 import com.kca.csg.service.TwinsService;
 import com.kca.csg.service.UserService;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
