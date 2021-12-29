@@ -10,9 +10,6 @@ const Header=()=>{
                        fontSize: '2rem', width: 'fit-content', marginLeft: '14px', display: 'inline-block' }
     const navbar={ height: '80px', width: '400px', right: '0%', position: 'absolute',
         display: 'inline-block' }
-    const writeButton={
-        // backgroundColor: 'var(--dusty-black)'
-    }
 
     return(
         <div style={ outermostWrapper }>
