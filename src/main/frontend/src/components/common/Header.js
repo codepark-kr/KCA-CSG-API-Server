@@ -21,6 +21,13 @@ const Header=()=>{
                 <div style={ navbar }>
                     <div className="buttonsWrapper">
                         <div style={ writeButton } className='writeButton'></div>
+                        <div className="write-dropdown">
+                            <ul>
+                                <li>Twins</li>
+                                <li>Shorties</li>
+                                <li>RefDoc</li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
