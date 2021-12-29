@@ -17,7 +17,7 @@ const Header=()=>{
                 <p style={ headerLogo }>º&nbsp; KCA-CSG ─ CONSOLE&nbsp; </p>
                 <div style={ navbar }>
                     <div className="buttonsWrapper">
-                        <div style={ writeButton } className='writeButton'></div>
+                        <div className='writeButton'></div>
                         <div className="write-dropdown">
                             <ul>
                                 <li>Twins</li>
