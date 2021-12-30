@@ -2,53 +2,54 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
 :root {
-    --bg-color: #0e1111;
-    --deep-walnut: #1f1812;
-    --chinas-black: #0F1314;
-    --light-bg-color: #232b2b;
-    --line-color: #FCFCFC;
-    --dim-gray: #9B9B9B;
-    --davy-gray: #555555;
-    --dark-teal: #004041;
-    --chinas-gold: #CC9802;
-    --text-color: #F5F5F5;
-    --test-color: #288ba8;
-    --gloomy-yellow: #878104;
-    --fresh-yellow: #F78104;
-    --juicy-orange: #FD5901;
-    --young-cactus: #4d9f0c;
+  --bg-color: #0e1111;
+  --deep-walnut: #1f1812;
+  --chinas-black: #0F1314;
+  --light-bg-color: #232b2b;
+  --line-color: #FCFCFC;
+  --dim-gray: #9B9B9B;
+  --davy-gray: #555555;
+  --dark-teal: #004041;
+  --chinas-gold: #CC9802;
+  --text-color: #F5F5F5;
+  --test-color: #288ba8;
+  --gloomy-yellow: #878104;
+  --fresh-yellow: #F78104;
+  --juicy-orange: #FD5901;
+  --young-cactus: #4d9f0c;
 
-    --dusty-gray: #757164;
-    --dusty-pearl: #a49f8d;
-    --dusty-black: #222423;
-    --teal-point: #154946;
+  --dusty-gray: #757164;
+  --dusty-darkgray: #545148;
+  --dusty-pearl: #a49f8d;
+  --dusty-black: #222423;
+  --teal-point: #154946;
 
-    --common-font: .88rem;
-    --ui-font: .92rem;
-    --title-font: 1.3rem;
-    --nav-font: 1.14rem;
-    --description-font: .9rem;
-  }
+  --common-font: .88rem;
+  --ui-font: .92rem;
+  --title-font: 1.3rem;
+  --nav-font: 1.14rem;
+  --description-font: .9rem;
+}
 
-  // use: animation: show 13s linear infinite;
-  @keyframes show{
-    0% {margin-top:-450px;}
-    2% {margin-top:-360px;}
-    20% {margin-top:-360px;}
-    22% {margin-top:-270px;}
-    40% {margin-top:-270px;}
-    42% {margin-top:-180px;}
-    60% {margin-top:-180px;}
-    62% {margin-top:-90px;}
-    80% {margin-top:-90px;}
-    82% {margin-top:0px;}
-    98%{margin-top:0px;}
-    100% {margin-top:-450px;}
+// use: animation: show 13s linear infinite;
+@keyframes show{
+  0% {margin-top:-450px;}
+  2% {margin-top:-360px;}
+  20% {margin-top:-360px;}
+  22% {margin-top:-270px;}
+  40% {margin-top:-270px;}
+  42% {margin-top:-180px;}
+  60% {margin-top:-180px;}
+  62% {margin-top:-90px;}
+  80% {margin-top:-90px;}
+  82% {margin-top:0px;}
+  98%{margin-top:0px;}
+  100% {margin-top:-450px;}
 }
 
 body { width: 100vw; height: 100vh; overflow-x: hidden; background-color: var(--dusty-black); padding: 0; margin: 0; }
 * { font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-                'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;  color: white; }
+'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;  color: white; }
 
 // common elements
 h2 { text-transform: uppercase; }
@@ -65,6 +66,11 @@ h2 { text-transform: uppercase; }
 .write-dropdown > ul { border: 2px solid teal; margin-left: -20px; }
 .write-dropdown > ul li { line-height: 1.4; font-weight: lighter; }
 
-.recentTwins { width: 980px; height: 400px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
+.recentTwins { width: 980px; height: 400px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2);}
+.recentTwins table tr td { font-width: lighter; color: var(--dusty-black); border: 1px solid var(--dusty-black); text-align: justify; padding: 10px; }
+.recentTwins table{ border-collapse: collapse; border: 1px solid var(--dusty-black); width: 100%; }
+.twinsIndex { background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
+
+
 .recentBooks { width: 380px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
 .recentShorties { width: 568px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(100% - 1290px / 2); }

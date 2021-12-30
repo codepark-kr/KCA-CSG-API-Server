@@ -9,6 +9,43 @@ const TestComponent=()=>{
         <div style={ outermostStyle }>
             <div style={ innerWrapper }>
                 <div className="recentTwins">
+                    <table>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;1.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>(WIP)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;2.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;3.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>(WIP)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;4.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;5.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>(Done)</td>
+                        </tr>
+                    </table>
                 </div>
                 <div className="recentBooks">
                 </div>
