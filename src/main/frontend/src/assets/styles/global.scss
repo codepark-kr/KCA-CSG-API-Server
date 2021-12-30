@@ -88,8 +88,7 @@ h2 { text-transform: uppercase; }
 .recentTwins table tr td:hover { font-style: italic; background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
 .recentTwins table{ border-collapse: collapse; border: 1px solid var(--dusty-black); width: calc(100% + 2px); margin-left: -1px; }
 
-.twinsIndex { background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
-.wipTwins { background: var(--dusty-darkgray); }
+.twinsIndex, .wipTwins { background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
 
 .recentBooks { width: 380px; height: 600px; position: absolute; top: 600px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
 .recentShorties { width: 568px; height: 600px; position: absolute; top: 600px; border: 1px solid var(--dusty-black); margin-left: calc(100% - 1290px / 2); }
