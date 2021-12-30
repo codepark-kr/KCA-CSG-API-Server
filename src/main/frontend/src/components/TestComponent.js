@@ -94,9 +94,12 @@ const TestComponent=()=>{
                     </table>
                 </div>
                 <div className="recentBooks">
+                    <p className="twinsTitle"> Book Reviews </p>
                 </div>
                 <div className="recentShorties">
+                    <p className="twinsTitle"> Short Reports </p>
                 </div>
+                <div className="dailyLoop"></div>
             </div>
         </div>
     );

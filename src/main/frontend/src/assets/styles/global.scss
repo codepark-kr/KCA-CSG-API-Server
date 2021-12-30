@@ -67,7 +67,9 @@ h2 { text-transform: uppercase; }
 .write-dropdown > ul li { line-height: 1.4; font-weight: lighter; }
 
 .recentTwins { width: 980px; height: 452px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2);}
-.twinsTitle { height: 18px; color: var(--dusty-black); font-size: 1.3rem; margin: 12px 15.8px 20px; font-weight: bold; }
+.dailyLoop { width: 980px; height: 80px; position: absolute; top: 1230px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2);}
+.twinsTitle { height: 18px; color: var(--dusty-black); font-size: 1.3rem; margin: 12px 15.8px 12px; font-weight: bolder;
+  width: fit-content; padding-bottom: 26px;}
 
 .recentTwins table tr td { font-width: lighter; color: var(--dusty-black); border: 1px solid var(--dusty-black); text-align: justify; padding: 10px; }
 .recentTwins table tr td:hover { font-style: italic; background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
