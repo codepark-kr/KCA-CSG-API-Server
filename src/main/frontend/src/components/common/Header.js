@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import '../../assets/styles/global.scss';
-import axios from 'axios';
 
 const Header=()=>{
     const headerWrapper={ fontWeight: 'bold', borderBottom: '1px solid var(--dusty-black)', height: '70px', fontStyle: 'italic',
-                          }
+                           }
     const outermostWrapper={ backgroundColor: 'var(--dusty-gray)' }
     const headerLogo={ marginTop: '10px',  fontFamily: 'DM Serif Display', color: 'var(--dusty-black)',
                        fontSize: '2rem', width: 'fit-content', marginLeft: '14px', display: 'inline-block' }
@@ -14,7 +13,7 @@ const Header=()=>{
     return(
         <div style={ outermostWrapper }>
             <header style={ headerWrapper } >
-                <p style={ headerLogo }>º&nbsp; KCA-CSG ─ CONSOLE&nbsp; </p>
+                <p style={ headerLogo }>º&nbsp; KCA-CSG ─ &nbsp;;</p>
                 <div style={ navbar }>
                     <div className="buttonsWrapper">
                         <div className='writeButton'></div>
@@ -22,10 +21,7 @@ const Header=()=>{
                     <div className="buttonsWrapper2">
                         <div className='writeButton2'></div>
                     </div>
-
                 </div>
-
-
             </header>
         </div>
     );

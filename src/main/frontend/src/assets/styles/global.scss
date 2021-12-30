@@ -54,11 +54,17 @@ body { width: 100vw; height: 100vh; overflow-x: hidden; background-color: var(--
 h2 { text-transform: uppercase; }
 
 // header, nav-bar
-.buttonsWrapper { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin: 10px  }
-.buttonsWrapper2 { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin-top: -72px; margin-left: 100px  }
-.writeButton { width: 48px; height: 48px; margin: 10px; background: var(--dusty-black); }
-.writeButton2 { width: 0px; height: 0px; border-radius: .1rem; border: 30px outset var(--dusty-gray);
-                     cursor: pointer; margin-bottom: 18px; }
+.buttonsWrapper { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin: 10px; cursor: pointer;  }
+.buttonsWrapper2 { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin-top: -71px; margin-left: 100px;  }
+
+.writeButton { width: 49px; height: 49px; margin: 10px; background: var(--dusty-black); }
+.writeButton2 { width: 0px; height: 0px; border-radius: .1rem; border: 30px outset var(--dusty-gray); cursor: pointer;  }
+
+
 .write-dropdown { border: 1px solid tomato; padding: 4px; height: 110px; }
 .write-dropdown > ul { border: 2px solid teal; margin-left: -20px; }
 .write-dropdown > ul li { line-height: 1.4; font-weight: lighter; }
+
+.recentTwins { width: 980px; height: 400px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
+.recentBooks { width: 380px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
+.recentShorties { width: 568px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(100% - 1290px / 2); }

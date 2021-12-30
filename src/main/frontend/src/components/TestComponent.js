@@ -8,7 +8,12 @@ const TestComponent=()=>{
     return(
         <div style={ outermostStyle }>
             <div style={ innerWrapper }>
-
+                <div className="recentTwins">
+                </div>
+                <div className="recentBooks">
+                </div>
+                <div className="recentShorties">
+                </div>
             </div>
         </div>
     );
