@@ -13,7 +13,7 @@ const Header=()=>{
     return(
         <div style={ outermostWrapper }>
             <header style={ headerWrapper } >
-                <p style={ headerLogo }>º&nbsp; KCA-CSG ─ &nbsp;;</p>
+                <p style={ headerLogo }>º&nbsp; KCA-CSG ─ &nbsp;SUMMARY OF TODAY'S</p>
                 <div style={ navbar }>
                     <div className="buttonsWrapper">
                         <div className='writeButton'></div>
