@@ -9,6 +9,7 @@ const TestComponent=()=>{
         <div style={ outermostStyle }>
             <div style={ innerWrapper }>
                 <div className="recentTwins">
+                    <p className="twinsTitle"> Recent Posts </p>
                     <table>
                         <tr>
                             <td className="twinsIndex">&nbsp;1.</td>
