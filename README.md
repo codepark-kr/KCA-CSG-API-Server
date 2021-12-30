@@ -7,3 +7,7 @@ KCA-CSG is a personal blog platform that supports to archive of development logs
 Build to REST-API Server(1): 2021.12.14 ~ 2021.12.28 (2 weeks)
 <br/>
 Create Mockup design's template(1): 2021.12.29 ~
+
+
+## Development Logs (Temporal)
+https://velog.io/@codepark_kr/KCA-CSG-Daily-Reports-frequent-update-last-update-2021.12.30
