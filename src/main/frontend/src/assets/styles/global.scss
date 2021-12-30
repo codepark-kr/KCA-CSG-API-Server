@@ -55,8 +55,8 @@ body { width: 100vw; height: 100vh; overflow-x: hidden; background-color: var(--
 h2 { text-transform: uppercase; }
 
 // header, nav-bar
-.buttonsWrapper { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin: 10px; cursor: pointer;  }
-.buttonsWrapper2 { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin-top: -71px; margin-left: 100px;  }
+.buttonsWrapper { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin: 10px 10px 10px 210px; cursor: pointer;  }
+.buttonsWrapper2 { border: 1px solid var(--dusty-black); height: 60px; width: 60px; margin-top: -71px; margin-left: 290px;  }
 
 .writeButton { width: 49px; height: 49px; margin: 10px; background: var(--dusty-black); }
 .writeButton2 { width: 0px; height: 0px; border-radius: .1rem; border: 30px outset var(--dusty-gray); cursor: pointer;  }
