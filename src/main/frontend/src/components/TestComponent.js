@@ -15,13 +15,15 @@ const TestComponent=()=>{
                             <td>Agile Methodology</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>2021.12.30</td>
-                            <td>(WIP)</td>
+                            <td>1 days ago</td>
+                            <td className="wipTwins">(WIP)</td>
                         </tr>
                         <tr>
                             <td className="twinsIndex">&nbsp;2.</td>
                             <td>Agile Methodology</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>2021.12.30</td>
+                            <td>4 days ago</td>
                             <td>(Done)</td>
                         </tr>
                         <tr>
@@ -29,13 +31,15 @@ const TestComponent=()=>{
                             <td>Agile Methodology</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>2021.12.30</td>
-                            <td>(WIP)</td>
+                            <td>1 days ago</td>
+                            <td className="wipTwins">(WIP)</td>
                         </tr>
                         <tr>
                             <td className="twinsIndex">&nbsp;4.</td>
                             <td>Agile Methodology</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>2021.12.30</td>
+                            <td>4 days ago</td>
                             <td>(Done)</td>
                         </tr>
                         <tr>
@@ -43,6 +47,47 @@ const TestComponent=()=>{
                             <td>Agile Methodology</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>2021.12.30</td>
+                            <td>4 days ago</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;6.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>4 days ago</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;7.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>4 days ago</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;8.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>4 days ago</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;9.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>2 days ago</td>
+                            <td>(Done)</td>
+                        </tr>
+                        <tr>
+                            <td className="twinsIndex">&nbsp;10.</td>
+                            <td>Agile Methodology</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>2021.12.30</td>
+                            <td>2 days ago</td>
                             <td>(Done)</td>
                         </tr>
                     </table>

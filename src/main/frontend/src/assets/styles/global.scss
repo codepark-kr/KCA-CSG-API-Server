@@ -66,11 +66,13 @@ h2 { text-transform: uppercase; }
 .write-dropdown > ul { border: 2px solid teal; margin-left: -20px; }
 .write-dropdown > ul li { line-height: 1.4; font-weight: lighter; }
 
-.recentTwins { width: 980px; height: 400px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2);}
+.recentTwins { width: 980px; height: 402px; position: absolute; top: 120px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2);}
 .recentTwins table tr td { font-width: lighter; color: var(--dusty-black); border: 1px solid var(--dusty-black); text-align: justify; padding: 10px; }
+.recentTwins table tr td:hover { font-style: italic; background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
 .recentTwins table{ border-collapse: collapse; border: 1px solid var(--dusty-black); width: 100%; }
-.twinsIndex { background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
 
+.twinsIndex { background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
+.wipTwins { background: var(--dusty-darkgray); }
 
 .recentBooks { width: 380px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(50% - 1024px / 2); }
 .recentShorties { width: 568px; height: 600px; position: absolute; top: 550px; border: 1px solid var(--dusty-black); margin-left: calc(100% - 1290px / 2); }
