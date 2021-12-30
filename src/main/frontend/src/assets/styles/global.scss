@@ -71,6 +71,19 @@ h2 { text-transform: uppercase; }
 .twinsTitle { height: 18px; color: var(--dusty-black); font-size: 1.3rem; margin: 12px 15.8px 12px; font-weight: bolder;
   width: fit-content; padding-bottom: 26px;}
 
+.pearlTitle { height: 18px; color: var(--dusty-pearl); font-size: 1.3rem; margin: 12px 15.8px 12px; font-weight: bolder;
+  width: 240px; padding-bottom: 30px; border-bottom: 6px double var(--dusty-gray);}
+.grayContents { color: var(--dusty-gray); margin-top: 30px; }
+
+.shortReportsTitle > span { font-size: 1.1rem; font-style: italic; color: var(--dusty-black); background: var(--dusty-gray);
+  font-weight: bold; }
+.shortReportsTitle { padding-top: 20px; }
+.shortReports table { padding: 0 14px 14px; }
+.shortReports table td { color: var(--dusty-pearl); }
+.shortReportsContents { text-align: justify; width: 100%; padding-bottom: 20px; padding-top: 10px; color: var(--dusty-pearl) !important; }
+.dates { padding-bottom: 30px; border-bottom: 1px solid var(--dusty-gray); color: var(--dusty-gray) !important; }
+.tags span{ color: var(--dusty-pearl) !important; }
+
 .recentTwins table tr td { font-width: lighter; color: var(--dusty-black); border: 1px solid var(--dusty-black); text-align: justify; padding: 10px; }
 .recentTwins table tr td:hover { font-style: italic; background: var(--dusty-darkgray); color: var(--dusty-pearl) !important; }
 .recentTwins table{ border-collapse: collapse; border: 1px solid var(--dusty-black); width: calc(100% + 2px); margin-left: -1px; }
