@@ -14,7 +14,7 @@ Build to REST-API Server(1)
 Create Mockup design's template(1)
 
 
-## Language & Tools
+## Stacks
 JDK 11, Spring Boot 2.5.4
 <br/>
 Spring Security
