@@ -14,7 +14,7 @@ class App extends Component{
 		return(
 			<>
 				<Switch>
-					<Route path={"/"} component={ HorizontalWrapper } />
+					<Route path={"/console"} component={ HorizontalWrapper } />
 				</Switch>
 			</>
 		);
