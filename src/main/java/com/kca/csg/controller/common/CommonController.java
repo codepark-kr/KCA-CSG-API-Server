@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CommonController {
 
-    @RequestMapping("/")
-    public String goIndex(){ return "index";  }
-
-    @RequestMapping("/console")
-    public String goConsole(){ return "console";  }
+//    @RequestMapping("/")
+//    public String goIndex(){ return "index";  }
+//
+//    @RequestMapping("/console")
+//    public String goConsole(){ return "index";  }
 
 }
