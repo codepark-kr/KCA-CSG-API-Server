@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -51,16 +52,27 @@ public class UserController {
 
     @GetMapping("/checkName")
     @ApiOperation(value = "Check availability of specific username")
-    public ResponseEntity<UserIdentityAvailability> checkUserNameAvailability(@RequestParam(value = "username") String username){
-        UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username.substring(10));
+    public ModelAndView checkUserNameAvailability(@RequestParam(value = "username") String username){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("requestedUsername", username);
+        mav.addObject("availability", userService.checkUsernameAvailability(username).getAvailable());
+        mav.setViewName("/checkName");
 
-        return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
+        return mav;
     }
+
+//    @GetMapping("/checkName")
+//    @ApiOperation(value = "Check availability of specific username")
+//    public ResponseEntity<UserIdentityAvailability> checkUserNameAvailability(@RequestParam(value = "username") String username){
+//        UserIdentityAvailability userIdentityAvailability = userService.checkUsernameAvailability(username.substring(10));
+//
+//        return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
+//    }
 
     @GetMapping("/checkEmail")
     @ApiOperation(value = "Check availability of specific email")
     public ResponseEntity<UserIdentityAvailability> checkEmailAvailability(@RequestParam(value = "email") String email){
-        UserIdentityAvailability userIdentityAvailability = userService.checkEmailAvailability(email.substring(7));
+        UserIdentityAvailability userIdentityAvailability = userService.checkEmailAvailability(email);
 
         return new ResponseEntity<>(userIdentityAvailability, HttpStatus.OK);
     }

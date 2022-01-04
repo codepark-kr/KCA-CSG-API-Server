@@ -51,7 +51,7 @@ CREATE TABLE 'albums' (
                           'id' bigint(19) unsigned NOT NULL AUTO_INCREMENT,
                           'title' varchar(255) NOT NULL,
                           'user_id' bigint(19) unsigned DEFAULT NULL,
-                          'created_at' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                          'created_at' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,ROLE
                           'updated_at' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                           'created_by' bigint(19) unsigned DEFAULT NULL,
                           'updated_by' bigint(19) unsigned DEFAULT NULL,

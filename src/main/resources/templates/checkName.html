@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/default_layout}" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="head"><title>Spring Boot</title>
+</th:block>
+<body>
+<div class="content" layout:fragment="content"><h2>Check the availability for requested username</h2>
+    <hr>
+    <table>
+        <tr>
+            <th><p>requested username</th>
+        </tr>
+        <th:block th:each="rl : ${ requestedUsername }">
+            <tr>
+                <td th:text="${ requestedUsername }"></td>
+            </tr>
+        </th:block>
+        <tr>
+            <th><p>availability</th>
+        </tr>
+        <th:block th:each="rl : ${ availability }">
+            <tr>
+                <td th:text="${ availability }"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

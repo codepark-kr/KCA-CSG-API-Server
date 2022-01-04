@@ -30,6 +30,15 @@ spring:
       schema-locations: classpath:/database/schema.sql
       mode: always
       continue-on-error: true
+# attach to thymeleaf settings
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
 logging:
   level:
     org.hibernate.SQL: debug

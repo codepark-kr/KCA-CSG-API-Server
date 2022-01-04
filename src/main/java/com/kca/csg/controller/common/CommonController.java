@@ -11,7 +11,6 @@ public class CommonController {
 //    @RequestMapping("/")
 //    public String goIndex(){ return "index";  }
 //
-//    @RequestMapping("/console")
-//    public String goConsole(){ return "index";  }
-
+    @RequestMapping("/checkName")
+    public String goConsole(){ return "index";  }
 }
