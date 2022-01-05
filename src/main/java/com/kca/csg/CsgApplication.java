@@ -29,5 +29,4 @@ public class CsgApplication {
 
 	@Bean
 	public ModelMapper modelMapper(){ return new ModelMapper(); }
-
 }
