@@ -30,6 +30,3 @@ MariaDB + Amazon AWS EC2
 Swagger 3.0, SonarQube 3.3
 <br/>
 Docker
-
-## Development Logs (Temporal)
-https://velog.io/@codepark_kr/KCA-CSG-Daily-Reports-frequent-update-last-update-2021.12.30
